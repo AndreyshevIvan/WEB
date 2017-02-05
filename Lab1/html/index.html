@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="../css/main.css" />
     <title>Yandex pasport</title>
 </head>
-<body class="font_arial">
+<body class="font_arial remove_whitespaces">
     <div class="header">
         <div class="header_logo">
             <a class="logo_yandex" href="//yandex.ru"></a>
@@ -13,9 +13,41 @@
     </div>
     <div class="content">
         <div class="content_inner">
-            <div class="house_roof"></div>
+            <div class="house_roof">
+                <div class="user_avatar"></div>
+            </div>
             <div class="house_body">
-
+                <form class="house_forms">
+                    <input class="field font_size_15 target_effect" placeholder="логин">
+                    <input class="field font_size_15 target_effect" placeholder="пароль">
+                    <div class="login_buttons">
+                        <button class="login_button_submit target_effect">
+                            <span class="">Войти</span>
+                        </button>
+                        <a class="login_button_qr target_effect" href="index.html"><div class="qr_code_img"></div></a>
+                    </div>
+                    <label class="another_computer_block">
+                        <input type="checkbox" class="another_computer_checkbox target_effect">
+                        <span class="another_computer_text font_size_15">Чужой компьютер</span>
+                    </label>
+                </form>
+                <div class="socials">
+                    <div class="vk"></div>
+                    <div class="fb"></div>
+                    <div class="twitter"></div>
+                    <div class="mail"></div>
+                    <div class="google"></div>
+                    <div class="class"></div>
+                </div>
+                <div class="separator"></div>
+                <div class="additional_buttons">
+                    <div class="additional_button_first font_size_13">
+                        <a class="button_forgot target_effect"><span>Не могу войти</span></a>
+                    </div>
+                    <div class="additional_button_second font_size_13">
+                        <a class="button_to_register target_effect"><span>Регистрация</span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

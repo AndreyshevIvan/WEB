@@ -3,7 +3,7 @@ body
     padding: 0;
     margin: 0;
     border: 0;
-    background-color: #fff;
+    background-color: #f6f5f3;
 }
 
 a
@@ -16,6 +16,13 @@ a:hover
 {
     color: #e00;
     transition: 0.3s ease-out;
+}
+
+input:focus,
+button:focus,
+a:focus
+{
+    outline: 0;
 }
 
 h1, h2, h3, h4, p
@@ -33,9 +40,19 @@ h1, h2, h3, h4, p
     font-family: Arial,sans-serif;
 }
 
+.remove_whitespaces
+{
+    font-size: 0;
+}
+
 .font_size_13
 {
     font-size: 13px;
+}
+
+.font_size_15
+{
+    font-size: 15px;
 }
 
 .font_color_gray
@@ -43,16 +60,27 @@ h1, h2, h3, h4, p
     color: #827f7f;
 }
 
+.target_effect:active
+{
+    box-shadow: 0 0 8px #ffd630;
+}
+
+.target_effect:focus
+{
+    box-shadow: 0 0 15px #ffd630;
+}
+
 .header
 {
     white-space: nowrap;
     padding: 20px 0px 20px 22px;
     border-bottom: 1px solid #dedddb;
+    background-color: #fff;
 }
 
 .header_logo
 {
-    white-space: nowrap;
+
 }
 
 .logo_yandex
@@ -75,7 +103,7 @@ h1, h2, h3, h4, p
 
 .content
 {
-    background-color: #f6f5f3;
+
 }
 
 .content_inner
@@ -94,21 +122,256 @@ h1, h2, h3, h4, p
     background: url("../images/house_roof.svg");
 }
 
+.user_avatar
+{
+    position: relative;
+    top: 20px;
+    left: -6px;
+    margin: 0 auto;
+    width: 42px;
+    height: 71px;
+    background: url("../images/user_avatar.svg")
+}
+
 .house_body
 {
     margin: 0 auto;
     box-sizing: border-box;
     width: 300px;
     padding: 60px 20px 10px 20px;
-    background: linear-gradient(to bottom,#e6eeff,#dde8ff);
-
+    background: linear-gradient(to bottom, #e6eeff, #dde8ff);
     border-bottom: 1px solid #c9d2e5;
     border-right: 1px solid #c9d2e5;
     border-left: 1px solid #c9d2e5;
 }
 
+.house_forms
+{
+
+}
+
+.field
+{
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 32px;
+    padding: 5px 10px;
+    border-radius: 1px;
+    margin-bottom: 10px;
+    border-top: 1px solid #8d939e;
+    border-right: 1px solid #a6acba;
+    border-bottom: 1px solid #c1c8d8;
+    border-left: 1px solid #a6acba;
+}
+
+.login_buttons
+{
+    margin-bottom: 10px;
+}
+
+.login_button_submit
+{
+    display: inline-block;
+    width: 220px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: top;
+    background: linear-gradient(to bottom, #ffdf5f, #ffcc01);
+    border-radius: 3px 0 0 3px;
+    border: 1px solid #8e8676;
+    cursor: pointer;
+}
+
+.login_button_qr
+{
+    display: inline-block;
+    width: 38px;
+    height: 32px;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #ffdf5f, #ffcc01);
+    border-radius: 0 3px 3px 0;
+    border-top: 1px solid #8e8676;
+    border-right: 1px solid #8e8676;
+    border-bottom: 1px solid #8e8676;
+}
+
+.login_button_submit:hover,
+.login_button_qr:hover
+{
+    background: linear-gradient(to bottom, #ffe680, #ffd42a);
+}
+
+.qr_code_img
+{
+    width: 16px;
+    height: 16px;
+    margin: 7px auto;
+    background: url("../images/login_button_qr_code.png") no-repeat;
+}
+
+.another_computer_block
+{
+    cursor: pointer;
+}
+
+.another_computer_checkbox
+{
+    width: 16px;
+    height: 16px;
+    margin: 0 5px 0 0;
+}
+
+.another_computer_text
+{
+    vertical-align: top;
+    line-height: 16px;
+}
+
+.socials
+{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.vk,
+.fb,
+.twitter,
+.mail,
+.google,
+.class
+{
+    border-radius: 3px;
+    margin-right: 6px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.3;
+}
+.vk:hover,
+.fb:hover,
+.twitter:hover,
+.mail:hover,
+.google:hover,
+.class:hover
+{
+    opacity: 1;
+    transition: 0.1s ease-out;
+}
+
+.vk
+{
+    background: url("../images/socials_icons/socials_vk_notActive.svg") no-repeat;
+}
+.vk:hover
+{
+    background: url("../images/socials_icons/socials_vk_active.svg") no-repeat;
+}
+
+.fb
+{
+    background: url("../images/socials_icons/socials_fb_notActive.svg") no-repeat;
+}
+.fb:hover
+{
+    background: url("../images/socials_icons/socials_fb_active.svg") no-repeat;
+}
+
+.twitter
+{
+    background: url("../images/socials_icons/socials_twitter_notActive.svg") no-repeat;
+}
+.twitter:hover
+{
+    background: url("../images/socials_icons/socials_twitter_active.svg") no-repeat;
+}
+
+.mail
+{
+    background: url("../images/socials_icons/socials_mail_notActive.svg") no-repeat;
+}
+.mail:hover
+{
+    background: url("../images/socials_icons/socials_mail_active.svg") no-repeat;
+}
+
+.google
+{
+    background: url("../images/socials_icons/socials_google_notActive.svg") no-repeat;
+}
+.google:hover
+{
+    background: url("../images/socials_icons/socials_google_active.svg") no-repeat;
+}
+
+.class
+{
+    background: url("../images/socials_icons/socials_class_notActive.svg") no-repeat;
+}
+.class:hover
+{
+    background: url("../images/socials_icons/socials_class_active.svg") no-repeat;
+}
+
+.separator
+{
+    width: 100%;
+    height: 1px;
+    background-color: #c9d2e5;
+    border-bottom: 1px solid #e8f0ff;
+    margin-bottom: 10px;
+}
+
+.additional_buttons
+{
+
+}
+
+.additional_button_first
+{
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+}
+
+.additional_button_second
+{
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+}
+
+.button_forgot,
+.button_to_register
+{
+    display: inline-block;
+    text-align: center;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid #b2bacc;
+    color: black;
+    cursor: pointer;
+}
+
+.button_forgot:hover,
+.button_to_register:hover
+{
+    color: black;
+    border: 1px solid #8f95a2;
+    transition: 0.1s ease-out;
+}
+
+.button_to_register
+{
+    font-weight: bold;
+}
+
 .footer
 {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     background-color: #f6f5f3;
     border-top: 1px solid #dedddb;
 }
