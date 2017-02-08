@@ -4,11 +4,12 @@
     <link rel="stylesheet" href="../css/main.css" />
     <title>Yandex pasport</title>
 </head>
-<body class="font_arial remove_whitespaces">
+<body class="font_arial">
     <div class="header">
         <div class="header_logo">
             <a class="logo_yandex" href="//yandex.ru"></a>
-            <a class="logo_pasport" href="index.html"></a>
+            <a class="logo_pasport" href="index.html" title="На главную"></a>
+            <div class="clear"></div>
         </div>
     </div>
     <div class="content">
@@ -18,44 +19,56 @@
             </div>
             <div class="house_body">
                 <form class="house_forms">
-                    <input class="field font_size_15 target_effect" placeholder="логин">
-                    <input class="field font_size_15 target_effect" placeholder="пароль">
+                    <input class="field font_size_15 target_effect" placeholder="логин" type="text" title="Введите логин">
+                    <input class="field font_size_15 target_effect" placeholder="пароль" type="password" title="Введите пароль">
                     <div class="login_buttons">
                         <button class="login_button_submit target_effect">
-                            <span class="">Войти</span>
+                            <span class="font_size_15">Войти</span>
                         </button>
-                        <a class="login_button_qr target_effect" href="index.html"><div class="qr_code_img"></div></a>
+                        <a class="login_button_qr target_effect" href="index.html" title="Авторизация через смартфон">
+                            <div class="qr_code_img"></div>
+                        </a>
+                        <div class="clear"></div>
                     </div>
-                    <label class="another_computer_block">
+                    <label class="another_computer_block" title="Не запоминать меня">
                         <input type="checkbox" class="another_computer_checkbox target_effect">
                         <span class="another_computer_text font_size_15">Чужой компьютер</span>
                     </label>
                 </form>
                 <div class="socials">
-                    <div class="vk"></div>
-                    <div class="fb"></div>
-                    <div class="twitter"></div>
-                    <div class="mail"></div>
-                    <div class="google"></div>
-                    <div class="class"></div>
+                    <div class="socials_buttons">
+                        <div class="vk" title="ВКонтакте"></div>
+                        <div class="fb" title="Facebook"></div>
+                        <div class="twitter" title="Twitter"></div>
+                        <div class="mail" title="Mail.ru"></div>
+                        <div class="google" title="Google+"></div>
+                        <div class="class" title="Одноклассники"></div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
                 <div class="separator"></div>
                 <div class="additional_buttons">
                     <div class="additional_button_first font_size_13">
-                        <a class="button_forgot target_effect"><span>Не могу войти</span></a>
+                        <a class="button_forgot target_effect" href="index.html">
+                            <span>Не могу войти</span>
+                        </a>
                     </div>
                     <div class="additional_button_second font_size_13">
-                        <a class="button_to_register target_effect"><span>Регистрация</span></a>
+                        <a class="button_to_register target_effect" href="index.html">
+                            <span>Регистрация</span>
+                        </a>
                     </div>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer font_size_13">
         <div class="footer_inner">
-            <div class="language">
+            <div class="language" title="Выбор языка">
                 <div class="language_logo"></div>
-                <a href="index.html">Ru</a>
+                <a class="language_name" href="index.html">Ru</a>
+                <div class="clear"></div>
             </div>
             <div class="help">
                 <a href="index.html">Помощь</a>
