@@ -62,13 +62,13 @@ h1, h2, h3, h4, p
 
 .target_effect:focus
 {
-    box-shadow: 0 0 10px #ffd630;
+    box-shadow: 0 0 6px 2px rgba(255,204,0,.7);
 }
 
 .header
 {
     white-space: nowrap;
-    padding: 20px 0px 20px 22px;
+    padding: 21px 0px 19px 22px;
     border-bottom: 1px solid #dedddb;
     background-color: #fff;
 }
@@ -108,7 +108,7 @@ h1, h2, h3, h4, p
     margin: 0 auto;
     box-sizing: border-box;
     width: 840px;
-    padding: 50px 10px 50px 10px;
+    padding: 49px 10px 50px 10px;
 }
 
 .house_roof
@@ -122,7 +122,7 @@ h1, h2, h3, h4, p
 .user_avatar
 {
     position: relative;
-    top: 24px;
+    top: 25px;
     left: -6px;
     margin: 0 auto;
     width: 42px;
@@ -153,13 +153,14 @@ h1, h2, h3, h4, p
     box-sizing: border-box;
     width: 100%;
     height: 32px;
-    padding: 5px 10px;
+    padding: 5px 10px 6px 10px;
     border-radius: 1px;
     margin-bottom: 10px;
     border-top: 1px solid #8d939e;
     border-right: 1px solid #a6acba;
     border-bottom: 1px solid #c1c8d8;
     border-left: 1px solid #a6acba;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1);
 }
 
 .login_buttons
@@ -173,7 +174,7 @@ h1, h2, h3, h4, p
     width: 220px;
     height: 32px;
     box-sizing: border-box;
-    vertical-align: top;
+    line-height: 0px;
     background: linear-gradient(to bottom, #ffdf5f, #ffcc01);
     border-radius: 3px 0 0 3px;
     border: 1px solid #8e8676;
@@ -203,7 +204,7 @@ h1, h2, h3, h4, p
 {
     width: 16px;
     height: 16px;
-    margin: 7px auto;
+    margin: 8px 7px 7px 11px;
     background: url("../images/login_button_qr_code.png") no-repeat;
 }
 
@@ -216,14 +217,19 @@ h1, h2, h3, h4, p
 {
     width: 16px;
     height: 16px;
-    margin: 0 5px 0 0;
+    margin: 0 2px 0 0;
     cursor: pointer;
+}
+
+input[type="checkbox"]+label
+{
+    background: #ffcc01;
 }
 
 .another_computer_text
 {
     vertical-align: top;
-    line-height: 16px;
+    line-height: 17px;
 }
 
 .socials
@@ -234,7 +240,7 @@ h1, h2, h3, h4, p
 .socials_buttons
 {
     display: inline-block;
-    margin: 10px auto;
+    margin: 7px auto 6px auto;
 }
 
 .vk,
@@ -245,7 +251,7 @@ h1, h2, h3, h4, p
 .class
 {
     border-radius: 3px;
-    margin-right: 6px;
+    margin-right: 7px;
     float: left;
     width: 24px;
     height: 24px;
@@ -323,7 +329,7 @@ h1, h2, h3, h4, p
     height: 1px;
     background-color: #c9d2e5;
     border-bottom: 1px solid #e8f0ff;
-    margin-bottom: 10px;
+    margin-bottom: 9px;
     margin-left: -20px;
 }
 
@@ -351,7 +357,7 @@ h1, h2, h3, h4, p
 {
     float: left;
     text-align: center;
-    padding: 3px 10px;
+    padding: 3px 9px 4px 9px;
     border-radius: 3px;
     border: 1px solid #b2bacc;
     color: black;
@@ -380,9 +386,10 @@ h1, h2, h3, h4, p
 {
     position: fixed;
     width: 100%;
+    height: 65px;
     bottom: 0;
     background-color: #f6f5f3;
-    border-top: 1px solid #dedddb;
+    box-shadow: 0px 0 2px rgba(0,0,0,.4);;
 }
 
 .footer_inner
@@ -398,7 +405,6 @@ h1, h2, h3, h4, p
     box-sizing: border-box;
     height: 65px;
     float: left;
-    width: 555px;
     padding: 25px 0 0 0;
 }
 
@@ -408,13 +414,14 @@ h1, h2, h3, h4, p
     width: 16px;
     height: 14px;
     background: url("../images/footer_language_logo_rus.svg") no-repeat;
+    margin-top: -2px;
 }
 
 .language_name
 {
     display: block;
     float: left;
-    margin-left: 4px;
+    margin-left: 5px;
 }
 
 .help
@@ -422,8 +429,7 @@ h1, h2, h3, h4, p
     box-sizing: border-box;
     height: 65px;
     float: left;
-    width: 50px;
-    margin: 0 0 0 50px;
+    margin-left: 577px;
     padding: 25px 0 0 0;
 }
 
@@ -432,7 +438,7 @@ h1, h2, h3, h4, p
     box-sizing: border-box;
     height: 65px;
     float: left;
-    margin: 0 0 0 50px;
+    margin-left: 49px;
     padding: 25px 0 0 0;
 }
 
