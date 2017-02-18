@@ -5,11 +5,28 @@ body
     border: 0;
     background-color: #f6f5f3;
     font-family: "Roboto Light", sans-serif;
+    min-width: 1100px;
+    background-color: firebrick;
 }
 
 h1, h2, h3, h4, p
 {
     margin: 0px;
+}
+
+input
+{
+    border: 0;
+}
+
+input:focus, textarea:focus, keygen:focus, select:focus
+{
+    outline-offset: 0;
+}
+
+:focus
+{
+    outline: none;
 }
 
 h1
@@ -34,12 +51,14 @@ h1
 
 .menu
 {
-    position: absolute;
-    width: 20%;
-    min-width: 300px;
-    height: 100%;
-    background-color: midnightblue;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    float: left;
     color: white;
+    width: 25%;
+    max-width: 340px;
+    z-index: 1;
 }
 
 .application_title
@@ -47,13 +66,12 @@ h1
     display: block;
     width: 100%;
     text-align: center;
-    margin-top: 20px;
 }
 
 .selecting_shapes_block
 {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .shape_selector
@@ -61,25 +79,97 @@ h1
     display: block;
     margin: 0 auto;
     font-family: "Roboto Light", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
 }
 
-.triangle_menu,
-.rectangle_menu,
-.circle_menu
+.common_settings
 {
     box-sizing: border-box;
-    margin-top: 40px;
     width: 100%;
-    padding: 10px 20px 10px 20px;
+    margin-top: 20px;
     border-top: 1px solid white;
+    padding: 10px 20px 0 20px;
+}
+
+.triangle_setting,
+.rectangle_setting,
+.circle_setting
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 20px 10px 20px;
     border-bottom: 1px solid white;
 }
 
+.shape_fill_color,
+.shape_outline_color,
+.shape_outline_thickness,
+.circle_radius,
+.circle_x,
+.circle_y,
+.triangle_x_first,
+.triangle_x_second,
+.triangle_x_third,
+.triangle_y_first,
+.triangle_y_second,
+.triangle_y_third,
+.rect_left_top_x,
+.rect_left_top_y,
+.rect_right_bottom_x,
+.rect_right_bottom_y
+{
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 10px;
+    font-family: "Roboto Medium", sans-serif;
+    font-size: 14px;
+    margin: 3px 0 8px 0;
+    font-weight: 800;
+}
 
+.coordinate_x
+{
+    float: left;
+    width: 40%;
+}
+
+.coordinate_y
+{
+    float: right;
+    width: 40%;
+}
+
+.draw_button
+{
+    box-sizing: border-box;
+    width: 80px;
+    display: block;
+    margin: 20px auto 0 auto;
+    font-family: "Roboto Light", sans-serif;
+    font-size: 16px;
+}
+
+.draw_button
+{
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 100px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid white;
+}
+
+.draw_button:hover
+{
+    background-color: aliceblue;
+    color: black;
+}
 
 .drawing_area
 {
     float: left;
-    background-color: azure;
+    display: block;
+    background-color: white;
 }

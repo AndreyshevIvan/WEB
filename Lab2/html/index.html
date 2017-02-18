@@ -4,26 +4,103 @@
     <link rel="stylesheet" href="../css/main.css" />
     <title>ShapeDraw</title>
 </head>
-<body class="">
-    <div class="menu">
+<body>
+    <div id="menu" class="menu">
         <h1 class="application_title">Drawing Shapes</h1>
-        <div class="selecting_shapes_block">
-            <select name="shapes" id="shape_selector" class="shape_selector">
-                <option>Triangle</option>
-                <option>Rectangle</option>
-                <option>Circle</option>
-            </select>
-        </div>
-        <div id="triangle_menu" class="triangle_menu">
-
-        </div>
-        <div id="rectangle_menu" class="rectangle_menu">
-
-        </div>
-        <div id="circle_menu" class="circle_menu">
-
-        </div>
+        <form id="shapes_settings" onsubmit="return false">
+            <div class="selecting_shapes_block">
+                <select name="shapes" id="shape_selector" class="shape_selector" onchange="selectShapeMenu()">
+                    <option value="triangle">Triangle</option>
+                    <option value="rectangle">Rectangle</option>
+                    <option value="circle">Circle</option>
+                </select>
+            </div>
+            <div id="common_settings" class="common_settings">
+                <div>
+                    <div><label for="shape_fill_color">Fill color (#xxxxxx)</label></div>
+                    <input type="text" id="shape_fill_color" class="shape_fill_color" pattern="#[0-9a-fA-F]{6}" />
+                </div>
+                <div>
+                    <div><label for="shape_outline_color">Outline color (#xxxxxx)</label></div>
+                    <input type="text" id="shape_outline_color" class="shape_outline_color" pattern="#[0-9a-fA-F]{6}" />
+                </div>
+                <div>
+                    <div><label for="shape_outline_thickness">Outline thickness</label></div>
+                    <input type="text" id="shape_outline_thickness" class="shape_outline_thickness" />
+                </div>
+                <div clas="clear"></div>
+            </div>
+            <div id="triangle_settings" class="triangle_setting">
+                <div class="coordinate_x">
+                    <div><label for="triangle_x_first">X1</label></div>
+                    <input type="text" id="triangle_x_first" class="triangle_x_first" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="triangle_y_first">Y1</label></div>
+                    <input type="text" id="triangle_y_first" class="triangle_y_first" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_x">
+                    <div><label for="triangle_x_second">X2</label></div>
+                    <input type="text" id="triangle_x_second" class="triangle_x_second" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="triangle_y_second">Y2</label></div>
+                    <input type="text" id="triangle_y_second" class="triangle_y_second" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_x">
+                    <div><label for="triangle_x_third">X3</label></div>
+                    <input type="text" id="triangle_x_third" class="triangle_x_third" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="triangle_y_third">Y3</label></div>
+                    <input type="text" id="triangle_y_third" class="triangle_y_third" pattern="[0-9]{5}" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="rectangle_settings" class="rectangle_setting">
+                <div class="coordinate_x">
+                    <div><label for="rect_left_top_x">X1</label></div>
+                    <input type="text" id="rect_left_top_x" class="rect_left_top_x" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="rect_left_top_y">Y1</label></div>
+                    <input type="text" id="rect_left_top_y" class="rect_left_top_y" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_x">
+                    <div><label for="rect_right_bottom_x">X2</label></div>
+                    <input type="text" id="rect_right_bottom_x" class="rect_right_bottom_x" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="rect_right_bottom_y">Y2</label></div>
+                    <input type="text" id="rect_right_bottom_y" class="rect_right_bottom_y" pattern="[0-9]{5}" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="circle_settings" class="circle_setting">
+                <div>
+                    <div><label for="circle_radius">Radius</label></div>
+                    <input type="text" id="circle_radius" class="circle_radius" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_x">
+                    <div><label for="circle_x">X</label></div>
+                    <input type="text" id="circle_x" class="circle_x" pattern="[0-9]{5}" />
+                </div>
+                <div class="coordinate_y">
+                    <div><label for="circle_y">Y</label></div>
+                    <input type="text" id="circle_y" class="circle_y" pattern="/d[0-9]{5}" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <input type="submit" id="draw_button" class="draw_button" onsubmit="draw()" />
+        </form>
     </div>
     <canvas id="drawing_area" class="drawing_area">Обновите браузер</canvas>
-    <div clas="clear"></div>
+    <script type="text/javascript" src="../js/menuParser.js"></script>
+    <script type="text/javascript" src="../js/canvas.js"></script>
+    <script type="text/javascript" src="../js/shape.js"></script>
+    <script type="text/javascript" src="../js/circle.js"></script>
+    <script type="text/javascript" src="../js/triangle.js"></script>
+    <script type="text/javascript" src="../js/rectangle.js"></script>
+    <script type="text/javascript" src="../js/handleEvents.js"></script>
+    <script>init()</script>
 </body>
