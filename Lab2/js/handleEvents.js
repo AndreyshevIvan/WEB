@@ -11,10 +11,14 @@ function selectShapeMenu()
     setNewMenu()
 }
 
-function getShape()
+function tryDrawShape()
 {
-    var shape = getShapeFromMenu();
-    shape.draw();
+    resetDrawingArea();
+    if (isFormsDataValid())
+    {
+        var shape = getShapeFromMenu();
+        shape.draw();
 
-    delete shape;
+        delete shape;
+    }
 }

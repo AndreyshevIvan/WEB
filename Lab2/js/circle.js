@@ -1,4 +1,4 @@
-var STANDART_CIRCLE_RADIUS = 10;
+var STANDART_CIRCLE_RADIUS = 40;
 
 class Circle
 {

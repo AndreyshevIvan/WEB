@@ -12,8 +12,8 @@ function initDrawingArea()
 
     ctx.translate(DRAWING_AREA_WIDTH / 2, DRAWING_AREA_HEIGHT / 2);
 
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
+    ctx.lineJoin = "miter";
+    ctx.lineCap = "square";
 }
 
 function resetDrawingArea()

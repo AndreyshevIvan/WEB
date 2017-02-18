@@ -113,10 +113,10 @@ h1
 .triangle_y_first,
 .triangle_y_second,
 .triangle_y_third,
-.rect_left_top_x,
-.rect_left_top_y,
-.rect_right_bottom_x,
-.rect_right_bottom_y
+.rect_x_first,
+.rect_y_first,
+.rect_x_second,
+.rect_y_second
 {
     border-radius: 3px;
     box-sizing: border-box;

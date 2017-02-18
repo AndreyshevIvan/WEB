@@ -59,39 +59,39 @@
             </div>
             <div id="rectangle_settings" class="rectangle_setting">
                 <div class="coordinate_x">
-                    <div><label for="rect_left_top_x">X1</label></div>
-                    <input type="text" id="rect_left_top_x" class="rect_left_top_x" />
+                    <div><label for="rect_x_first">X1</label></div>
+                    <input type="text" id="rect_x_first" class="rect_x_first" />
                 </div>
                 <div class="coordinate_y">
-                    <div><label for="rect_left_top_y">Y1</label></div>
-                    <input type="text" id="rect_left_top_y" class="rect_left_top_y" />
+                    <div><label for="rect_y_first">Y1</label></div>
+                    <input type="text" id="rect_y_first" class="rect_y_first" />
                 </div>
                 <div class="coordinate_x">
-                    <div><label for="rect_right_bottom_x">X2</label></div>
-                    <input type="text" id="rect_right_bottom_x" class="rect_right_bottom_x" />
+                    <div><label for="rect_x_second">X2</label></div>
+                    <input type="text" id="rect_x_second" class="rect_x_second" />
                 </div>
                 <div class="coordinate_y">
-                    <div><label for="rect_right_bottom_y">Y2</label></div>
-                    <input type="text" id="rect_right_bottom_y" class="rect_right_bottom_y" />
+                    <div><label for="rect_y_second">Y2</label></div>
+                    <input type="text" id="rect_y_second" class="rect_y_second" />
                 </div>
                 <div class="clear"></div>
             </div>
             <div id="circle_settings" class="circle_setting">
                 <div>
                     <div><label for="circle_radius">Radius</label></div>
-                    <input type="text" id="circle_radius" class="circle_radius"  />
+                    <input type="text" id="circle_radius" class="circle_radius" />
                 </div>
                 <div class="coordinate_x">
                     <div><label for="circle_x">X</label></div>
-                    <input type="text" id="circle_x" class="circle_x"   />
+                    <input type="text" id="circle_x" class="circle_x" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="circle_y">Y</label></div>
-                    <input type="text" id="circle_y" class="circle_y"   />
+                    <input type="text" id="circle_y" class="circle_y" />
                 </div>
                 <div class="clear"></div>
             </div>
-            <input type="submit" id="draw_button" class="draw_button" onclick="getShape()" />
+            <input type="submit" id="draw_button" class="draw_button" onclick="tryDrawShape()" />
         </form>
     </div>
     <canvas id="drawing_area" class="drawing_area">Обновите браузер</canvas>

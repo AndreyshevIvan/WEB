@@ -13,10 +13,10 @@ function resetMenu()
         document.getElementById("triangle_y_first"),
         document.getElementById("triangle_y_second"),
         document.getElementById("triangle_y_third"),
-        document.getElementById("rect_left_top_x"),
-        document.getElementById("rect_left_top_y"),
-        document.getElementById("rect_right_bottom_x"),
-        document.getElementById("rect_right_bottom_y")
+        document.getElementById("rect_x_first"),
+        document.getElementById("rect_y_first"),
+        document.getElementById("rect_x_second"),
+        document.getElementById("rect_y_second")
     ];
 
     for(var i = 0; i < elemets.length; i++)
@@ -42,16 +42,16 @@ function getOutlineColor()
 
 function getOutlineThickness()
 {
-    return document.getElementById("shape_outline_thickness").value;
+    return Number(document.getElementById("shape_outline_thickness").value);
 }
 
 function getCircleFromMenu()
 {
     var circle = new Circle();
 
-    var radius = document.getElementById("circle_radius").value;
-    var centerX = document.getElementById("circle_x").value;
-    var centerY = document.getElementById("circle_y").value;
+    var radius = Number(document.getElementById("circle_radius").value);
+    var centerX = Number(document.getElementById("circle_x").value);
+    var centerY = -Number(document.getElementById("circle_y").value);
 
     circle.prototype.setFillColor(getFillColor());
     circle.prototype.setOutlineColor(getOutlineColor());
@@ -66,15 +66,15 @@ function getRectangleFromMenu()
 {
     var rectangle = new Rectangle();
 
-    var topLeftX = document.getElementById("rect_left_top_x").value;
-    var topLeftY = document.getElementById("rect_left_top_y").value;
-    var bottomRightX = document.getElementById("rect_right_bottom_x").value;
-    var bottomRightY = document.getElementById("rect_right_bottom_y").value;
+    var x1 = Number(document.getElementById("rect_x_first").value);
+    var y1 = -Number(document.getElementById("rect_y_first").value);
+    var x2 = Number(document.getElementById("rect_x_second").value);
+    var y2 = -Number(document.getElementById("rect_y_second").value);
 
     rectangle.prototype.setFillColor(getFillColor());
     rectangle.prototype.setOutlineColor(getOutlineColor());
     rectangle.prototype.setOutlineThickness(getOutlineThickness());
-    rectangle.setCoordinates(topLeftX, topLeftY, bottomRightX, bottomRightY);
+    rectangle.setCoordinates(x1, y1, x2, y2);
 
     return rectangle;
 }
@@ -83,12 +83,12 @@ function getTriangleFromMenu()
 {
     var triangle = new Triangle();
 
-    var x1 = document.getElementById("triangle_x_first").value;
-    var y1 = document.getElementById("triangle_y_first").value;
-    var x2 = document.getElementById("triangle_x_second").value;
-    var y2 = document.getElementById("triangle_y_second").value;
-    var x3 = document.getElementById("triangle_x_third").value;
-    var y3 = document.getElementById("triangle_y_third").value;
+    var x1 = Number(document.getElementById("triangle_x_first").value);
+    var y1 = -Number(document.getElementById("triangle_y_first").value);
+    var x2 = Number(document.getElementById("triangle_x_second").value);
+    var y2 = -Number(document.getElementById("triangle_y_second").value);
+    var x3 = Number(document.getElementById("triangle_x_third").value);
+    var y3 = -Number(document.getElementById("triangle_y_third").value);
 
     triangle.prototype.setFillColor(getFillColor());
     triangle.prototype.setOutlineColor(getOutlineColor());
@@ -142,4 +142,9 @@ function setNewMenu()
     {
         rectangleMenu.style.display = "block";
     }
+}
+
+function isFormsDataValid()
+{
+    return true;
 }
