@@ -2,18 +2,19 @@ function init()
 {
     initDrawingArea();
     selectShapeMenu();
-
-    var circle = new Circle();
-    circle.draw();
 }
 
 function selectShapeMenu()
 {
+    resetDrawingArea();
     resetMenu();
     setNewMenu()
 }
 
-function draw()
+function getShape()
 {
-    console.log("draw!");
+    var shape = getShapeFromMenu();
+    shape.draw();
+
+    delete shape;
 }

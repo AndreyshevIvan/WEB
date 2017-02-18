@@ -33,74 +33,74 @@
             <div id="triangle_settings" class="triangle_setting">
                 <div class="coordinate_x">
                     <div><label for="triangle_x_first">X1</label></div>
-                    <input type="text" id="triangle_x_first" class="triangle_x_first" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_x_first" class="triangle_x_first" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="triangle_y_first">Y1</label></div>
-                    <input type="text" id="triangle_y_first" class="triangle_y_first" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_y_first" class="triangle_y_first" />
                 </div>
                 <div class="coordinate_x">
                     <div><label for="triangle_x_second">X2</label></div>
-                    <input type="text" id="triangle_x_second" class="triangle_x_second" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_x_second" class="triangle_x_second" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="triangle_y_second">Y2</label></div>
-                    <input type="text" id="triangle_y_second" class="triangle_y_second" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_y_second" class="triangle_y_second" />
                 </div>
                 <div class="coordinate_x">
                     <div><label for="triangle_x_third">X3</label></div>
-                    <input type="text" id="triangle_x_third" class="triangle_x_third" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_x_third" class="triangle_x_third" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="triangle_y_third">Y3</label></div>
-                    <input type="text" id="triangle_y_third" class="triangle_y_third" pattern="[0-9]{5}" />
+                    <input type="text" id="triangle_y_third" class="triangle_y_third" />
                 </div>
                 <div class="clear"></div>
             </div>
             <div id="rectangle_settings" class="rectangle_setting">
                 <div class="coordinate_x">
                     <div><label for="rect_left_top_x">X1</label></div>
-                    <input type="text" id="rect_left_top_x" class="rect_left_top_x" pattern="[0-9]{5}" />
+                    <input type="text" id="rect_left_top_x" class="rect_left_top_x" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="rect_left_top_y">Y1</label></div>
-                    <input type="text" id="rect_left_top_y" class="rect_left_top_y" pattern="[0-9]{5}" />
+                    <input type="text" id="rect_left_top_y" class="rect_left_top_y" />
                 </div>
                 <div class="coordinate_x">
                     <div><label for="rect_right_bottom_x">X2</label></div>
-                    <input type="text" id="rect_right_bottom_x" class="rect_right_bottom_x" pattern="[0-9]{5}" />
+                    <input type="text" id="rect_right_bottom_x" class="rect_right_bottom_x" />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="rect_right_bottom_y">Y2</label></div>
-                    <input type="text" id="rect_right_bottom_y" class="rect_right_bottom_y" pattern="[0-9]{5}" />
+                    <input type="text" id="rect_right_bottom_y" class="rect_right_bottom_y" />
                 </div>
                 <div class="clear"></div>
             </div>
             <div id="circle_settings" class="circle_setting">
                 <div>
                     <div><label for="circle_radius">Radius</label></div>
-                    <input type="text" id="circle_radius" class="circle_radius" pattern="[0-9]{5}" />
+                    <input type="text" id="circle_radius" class="circle_radius"  />
                 </div>
                 <div class="coordinate_x">
                     <div><label for="circle_x">X</label></div>
-                    <input type="text" id="circle_x" class="circle_x" pattern="[0-9]{5}" />
+                    <input type="text" id="circle_x" class="circle_x"   />
                 </div>
                 <div class="coordinate_y">
                     <div><label for="circle_y">Y</label></div>
-                    <input type="text" id="circle_y" class="circle_y" pattern="/d[0-9]{5}" />
+                    <input type="text" id="circle_y" class="circle_y"   />
                 </div>
                 <div class="clear"></div>
             </div>
-            <input type="submit" id="draw_button" class="draw_button" onsubmit="draw()" />
+            <input type="submit" id="draw_button" class="draw_button" onclick="getShape()" />
         </form>
     </div>
     <canvas id="drawing_area" class="drawing_area">Обновите браузер</canvas>
-    <script type="text/javascript" src="../js/menuParser.js"></script>
     <script type="text/javascript" src="../js/canvas.js"></script>
     <script type="text/javascript" src="../js/shape.js"></script>
     <script type="text/javascript" src="../js/circle.js"></script>
     <script type="text/javascript" src="../js/triangle.js"></script>
     <script type="text/javascript" src="../js/rectangle.js"></script>
+    <script type="text/javascript" src="../js/menuParser.js"></script>
     <script type="text/javascript" src="../js/handleEvents.js"></script>
     <script>init()</script>
 </body>

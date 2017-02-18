@@ -1,10 +1,14 @@
+var STANDART_FILL_COLOR = "#40AAF1";
+var STANDART_OUTLINE_COLOR = "#000000";
+var STANDART_OUTLINE_THICKNESS = 4;
+
 class Shape
 {
     constructor()
     {
-        this.fillColor = "#00FFBB";
-        this.outlineColor = "#000000";
-        this.outlineThickness = 10;
+        this.fillColor = STANDART_FILL_COLOR;
+        this.outlineColor = STANDART_OUTLINE_COLOR;
+        this.outlineThickness = STANDART_OUTLINE_THICKNESS;
     }
 
     setFillColor(color)
@@ -17,6 +21,11 @@ class Shape
         this.outlineColor = color;
     }
 
+    setOutlineThickness(outlineThickness)
+    {
+        this.outlineThickness = outlineThickness;
+    }
+
     getFillColor()
     {
         return this.fillColor;
@@ -25,5 +34,10 @@ class Shape
     getOutlineColor()
     {
         return this.outlineColor;
+    }
+
+    getOutlineThickness()
+    {
+        return this.outlineThickness;
     }
 }
