@@ -1,11 +1,11 @@
-var STANDART_TRIANGLE_X1 = -4;
-var STANDART_TRIANGLE_Y1 = 81;
+var STANDART_TRIANGLE_X1 = -100;
+var STANDART_TRIANGLE_Y1 = 100;
 
-var STANDART_TRIANGLE_Y2 = 51;
-var STANDART_TRIANGLE_X2 = 62;
+var STANDART_TRIANGLE_X2 = 100;
+var STANDART_TRIANGLE_Y2 = 100;
 
-var STANDART_TRIANGLE_X3 = 34;
-var STANDART_TRIANGLE_Y3 = 42;
+var STANDART_TRIANGLE_X3 = 0;
+var STANDART_TRIANGLE_Y3 = 0;
 
 class Triangle
 {
@@ -14,8 +14,8 @@ class Triangle
         this.prototype = Object.create(new Shape());
         this.x1 = STANDART_TRIANGLE_X1;
         this.y1 = STANDART_TRIANGLE_Y1;
-        this.x2 = STANDART_TRIANGLE_Y2;
-        this.y2 = STANDART_TRIANGLE_X2;
+        this.x2 = STANDART_TRIANGLE_X2;
+        this.y2 = STANDART_TRIANGLE_Y2;
         this.x3 = STANDART_TRIANGLE_X3;
         this.y3 = STANDART_TRIANGLE_Y3;
     }

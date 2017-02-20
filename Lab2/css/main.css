@@ -3,10 +3,9 @@ body
     padding: 0;
     margin: 0;
     border: 0;
-    background-color: #f6f5f3;
+    background-color: #2C3E50;
     font-family: "Roboto Light", sans-serif;
-    min-width: 1100px;
-    background-color: firebrick;
+    color: #ECF0F1;
 }
 
 h1, h2, h3, h4, p
@@ -49,16 +48,22 @@ h1
     font-size: 30px;
 }
 
-.menu
+.application_box
 {
     position: relative;
+    width: 1000px;
+    margin: 50px auto 50px auto;
+}
+
+.menu
+{
     box-sizing: border-box;
     padding: 20px 20px;
     float: left;
-    color: white;
-    width: 25%;
-    max-width: 340px;
-    z-index: 1;
+    color: #ECF0F1;
+    width: 300px;
+    height: 700px;
+    background-color: #B23B2E;
 }
 
 .application_title
@@ -71,7 +76,10 @@ h1
 .selecting_shapes_block
 {
     width: 100%;
-    margin-top: 30px;
+    border-top: 1px solid #ECF0F1;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 20px 20px;
 }
 
 .shape_selector
@@ -80,14 +88,14 @@ h1
     margin: 0 auto;
     font-family: "Roboto Light", sans-serif;
     font-size: 20px;
+    width: 100%;
 }
 
 .common_settings
 {
     box-sizing: border-box;
     width: 100%;
-    margin-top: 20px;
-    border-top: 1px solid white;
+    border-top: 1px solid #ECF0F1;
     padding: 10px 20px 0 20px;
 }
 
@@ -98,7 +106,7 @@ h1
     box-sizing: border-box;
     width: 100%;
     padding: 0 20px 10px 20px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #ECF0F1;
 }
 
 .shape_fill_color,
@@ -158,18 +166,18 @@ h1
     width: 100px;
     text-align: center;
     padding: 5px 10px;
-    border: 1px solid white;
+    border: 1px solid #ECF0F1;
 }
 
 .draw_button:hover
 {
-    background-color: aliceblue;
-    color: black;
+    background-color: #ECF0F1;
+    color: #2C3E50;
 }
 
 .drawing_area
 {
-    float: left;
     display: block;
-    background-color: white;
+    float: left;
+    background-color: #ECF0F1;
 }

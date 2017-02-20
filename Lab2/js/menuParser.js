@@ -32,32 +32,65 @@ function getShapeName()
 
 function getFillColor()
 {
-    return document.getElementById("shape_fill_color").value;
+    var color = document.getElementById("shape_fill_color").value;
+    if (color == "")
+    {
+        var shape = new Shape();
+        color = shape.getFillColor();
+    }
+
+    return color;
 }
 
 function getOutlineColor()
 {
-    return document.getElementById("shape_outline_color").value;
+    var color = document.getElementById("shape_outline_color").value;
+    if (color == "")
+    {
+        var shape = new Shape();
+        color = shape.getOutlineColor();
+    }
+
+    return color;
 }
 
 function getOutlineThickness()
 {
-    return Number(document.getElementById("shape_outline_thickness").value);
+    var thickness = document.getElementById("shape_outline_thickness").value;
+    if (thickness == "")
+    {
+        var shape = new Shape();
+        thickness = shape.getOutlineThickness();
+    }
+
+    return Number(thickness);
+}
+
+function getValueFromFormIfItExists(fieldName, standartValue)
+{
+    var readingVal = document.getElementById(fieldName).value;
+    if (readingVal == "")
+    {
+        readingVal = standartValue;
+    }
+
+    return readingVal;
 }
 
 function getCircleFromMenu()
 {
     var circle = new Circle();
 
-    var radius = Number(document.getElementById("circle_radius").value);
-    var centerX = Number(document.getElementById("circle_x").value);
-    var centerY = -Number(document.getElementById("circle_y").value);
-
     circle.prototype.setFillColor(getFillColor());
     circle.prototype.setOutlineColor(getOutlineColor());
     circle.prototype.setOutlineThickness(getOutlineThickness());
-    circle.setRadius(radius);
-    circle.setPosition(centerX, centerY);
+
+    circle.setRadius(getValueFromFormIfItExists("circle_radius", circle.radius));
+
+    circle.setPosition(
+        getValueFromFormIfItExists("circle_x", circle.centerX),
+        -getValueFromFormIfItExists("circle_y", circle.centerY)
+    );
 
     return circle;
 }
@@ -66,15 +99,16 @@ function getRectangleFromMenu()
 {
     var rectangle = new Rectangle();
 
-    var x1 = Number(document.getElementById("rect_x_first").value);
-    var y1 = -Number(document.getElementById("rect_y_first").value);
-    var x2 = Number(document.getElementById("rect_x_second").value);
-    var y2 = -Number(document.getElementById("rect_y_second").value);
-
     rectangle.prototype.setFillColor(getFillColor());
     rectangle.prototype.setOutlineColor(getOutlineColor());
     rectangle.prototype.setOutlineThickness(getOutlineThickness());
-    rectangle.setCoordinates(x1, y1, x2, y2);
+
+    rectangle.setCoordinates(
+        getValueFromFormIfItExists("rect_x_first", rectangle.x1),
+        -getValueFromFormIfItExists("rect_y_first", rectangle.y1),
+        getValueFromFormIfItExists("rect_x_second", rectangle.x2),
+        -getValueFromFormIfItExists("rect_y_second", rectangle.y2)
+    );
 
     return rectangle;
 }
@@ -83,39 +117,44 @@ function getTriangleFromMenu()
 {
     var triangle = new Triangle();
 
-    var x1 = Number(document.getElementById("triangle_x_first").value);
-    var y1 = -Number(document.getElementById("triangle_y_first").value);
-    var x2 = Number(document.getElementById("triangle_x_second").value);
-    var y2 = -Number(document.getElementById("triangle_y_second").value);
-    var x3 = Number(document.getElementById("triangle_x_third").value);
-    var y3 = -Number(document.getElementById("triangle_y_third").value);
-
     triangle.prototype.setFillColor(getFillColor());
     triangle.prototype.setOutlineColor(getOutlineColor());
     triangle.prototype.setOutlineThickness(getOutlineThickness());
-    triangle.setCoordinates(x1, y1, x2, y2, x3, y3);
+
+    triangle.setCoordinates(
+        getValueFromFormIfItExists("triangle_x_first", triangle.x1),
+        -getValueFromFormIfItExists("triangle_y_first", triangle.y1),
+        getValueFromFormIfItExists("triangle_x_second", triangle.x2),
+        -getValueFromFormIfItExists("triangle_y_second", triangle.y2),
+        getValueFromFormIfItExists("triangle_x_third", triangle.x3),
+        -getValueFromFormIfItExists("triangle_y_third", triangle.y3)
+    );
 
     return triangle;
 }
 
-function getShapeFromMenu()
+function getShapeFromMenuAndUpdateThem()
 {
     var shapeName = getShapeName();
+    var shape;
 
     if (shapeName == "circle")
     {
-        return getCircleFromMenu();
+        shape = getCircleFromMenu();
+        UpdateCircleMenu();
     }
     else if (shapeName == "rectangle")
     {
-        return getRectangleFromMenu();
+        shape = getRectangleFromMenu();
+        UpdateRectangleMenu();
     }
     else if (shapeName == "triangle")
     {
-        return getTriangleFromMenu();
+        shape = getTriangleFromMenu();
+        UpdateTriangleMenu();
     }
 
-    return undefined;
+    return shape;
 }
 
 function setNewMenu()

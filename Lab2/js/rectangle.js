@@ -50,6 +50,7 @@ class Rectangle
         ctx.lineTo(this.x2 - offset, this.y2);
         ctx.lineTo(this.x1, this.y1);
         ctx.stroke();
+        ctx.fillStyle = this.prototype.getFillColor();
         ctx.fill();
     }
 }

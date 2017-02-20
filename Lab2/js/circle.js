@@ -12,6 +12,7 @@ class Circle
 
     setPosition(x, y)
     {
+        console.log("test");
         this.centerX = x;
         this.centerY = y;
     }

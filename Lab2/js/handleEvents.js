@@ -11,12 +11,12 @@ function selectShapeMenu()
     setNewMenu()
 }
 
-function tryDrawShape()
+function drawShape()
 {
     resetDrawingArea();
     if (isFormsDataValid())
     {
-        var shape = getShapeFromMenu();
+        var shape = getShapeFromMenuAndUpdateThem();
         shape.draw();
 
         delete shape;

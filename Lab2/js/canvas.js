@@ -1,6 +1,6 @@
 var DRAWING_AREA_ID = "drawing_area";
-var DRAWING_AREA_WIDTH = 630;
-var DRAWING_AREA_HEIGHT = 600;
+var DRAWING_AREA_WIDTH = 700;
+var DRAWING_AREA_HEIGHT = 700;
 
 function initDrawingArea()
 {
@@ -14,6 +14,8 @@ function initDrawingArea()
 
     ctx.lineJoin = "miter";
     ctx.lineCap = "square";
+
+    resetDrawingArea();
 }
 
 function resetDrawingArea()
@@ -22,4 +24,18 @@ function resetDrawingArea()
     var ctx = drawingArea.getContext("2d");
 
     ctx.clearRect(-drawingArea.width / 2, -drawingArea.height / 2, drawingArea.width, drawingArea.height);
+    setAxisImage();
+}
+
+function setAxisImage()
+{
+    var drawingArea = document.getElementById(DRAWING_AREA_ID);
+    var ctx = drawingArea.getContext("2d");
+
+    var axis = new Image();
+    axis.src = "../images/axis.png"
+    axis.onload = function()
+    {
+        ctx.drawImage(axis, -330, 230, 100, 100);
+    }
 }
