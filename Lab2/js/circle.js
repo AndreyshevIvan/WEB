@@ -12,9 +12,22 @@ class Circle
 
     setPosition(x, y)
     {
-        console.log("test");
-        this.centerX = x;
-        this.centerY = y;
+        this.centerX = Number(x);
+        this.centerY = Number(y);
+    }
+
+    getAreaSize()
+    {
+        var areaSize = Math.PI * this.radius * this.radius;
+
+        return areaSize;
+    }
+
+    getPerimeter()
+    {
+        var perimeter = 2 * Math.PI * this.radius;
+
+        return perimeter;
     }
 
     setRadius(radius)
@@ -25,13 +38,15 @@ class Circle
         }
     }
 
+
+
     draw()
     {
         var canvas = document.getElementById("drawing_area");
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.fillStyle = this.prototype.getOutlineColor();
+        ctx.strokeStyle = this.prototype.getOutlineColor();
         ctx.lineWidth = this.prototype.getOutlineThickness() * 2;
         ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI, true);
         ctx.stroke();

@@ -18,6 +18,7 @@ function drawShape()
     {
         var shape = getShapeFromMenuAndUpdateThem();
         shape.draw();
+        setShapeCharacteristics(shape);
 
         delete shape;
     }

@@ -1,6 +1,9 @@
 var DRAWING_AREA_ID = "drawing_area";
 var DRAWING_AREA_WIDTH = 700;
 var DRAWING_AREA_HEIGHT = 700;
+var AXIS_IMAGE_OFFSET_X = 7;
+var AXIS_IMAGE_OFFSET_Y = 94;
+var AXIS_IMAGE_OPACITY = 0.15;
 
 function initDrawingArea()
 {
@@ -34,8 +37,11 @@ function setAxisImage()
 
     var axis = new Image();
     axis.src = "../images/axis.png"
+    axis.opacity = 0.3;
     axis.onload = function()
     {
-        ctx.drawImage(axis, -330, 230, 100, 100);
+        ctx.globalAlpha = AXIS_IMAGE_OPACITY;
+        ctx.drawImage(axis, -AXIS_IMAGE_OFFSET_X, -AXIS_IMAGE_OFFSET_Y, 100, 100);
+        ctx.globalAlpha = 1;
     }
 }

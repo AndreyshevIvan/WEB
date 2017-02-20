@@ -28,11 +28,29 @@ class Rectangle
 
     setCoordinates(x1, y1, x2, y2)
     {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
+        this.x1 = Number(x1);
+        this.y1 = Number(y1);
+        this.x2 = Number(x2);
+        this.y2 = Number(y2);
         this.calculateSize();
+    }
+
+    getAreaSize()
+    {
+        var sideX = Math.abs(this.x1 - this.x2);
+        var sideY = Math.abs(this.y1 - this.y2);
+        var areaSize = sideX * sideY;
+
+        return areaSize;
+    }
+
+    getPerimeter()
+    {
+        var sideX = Math.abs(this.x1 - this.x2);
+        var sideY = Math.abs(this.y1 - this.y2);
+        var perimeter = 2 * (sideX + sideY);
+
+        return perimeter;
     }
 
     draw()

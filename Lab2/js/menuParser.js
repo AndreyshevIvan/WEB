@@ -1,3 +1,5 @@
+var CHARACTERISTICS_SYMBOLS_COUNT = 10;
+
 function resetMenu()
 {
     var elemets = [
@@ -23,6 +25,8 @@ function resetMenu()
     {
         elemets[i].value = "";
     }
+
+    resetShapeCharacteristics();
 }
 
 function getShapeName()
@@ -70,8 +74,8 @@ function getCircleFromMenu()
     circle.setRadius(getValueFromFormIfItExists("circle_radius", circle.radius));
 
     circle.setPosition(
-        Number(getValueFromFormIfItExists("circle_x", circle.centerX)),
-        -Number(getValueFromFormIfItExists("circle_y", circle.centerY))
+        getValueFromFormIfItExists("circle_x", circle.centerX),
+        -getValueFromFormIfItExists("circle_y", circle.centerY)
     );
 
     return circle;
@@ -86,10 +90,10 @@ function getRectangleFromMenu()
     rectangle.prototype.setOutlineThickness(getOutlineThickness());
 
     rectangle.setCoordinates(
-        Number(getValueFromFormIfItExists("rect_x_first", rectangle.x1)),
-        -Number(getValueFromFormIfItExists("rect_y_first", rectangle.y1)),
-        Number(getValueFromFormIfItExists("rect_x_second", rectangle.x2)),
-        -Number(getValueFromFormIfItExists("rect_y_second", rectangle.y2))
+        getValueFromFormIfItExists("rect_x_first", rectangle.x1),
+        -getValueFromFormIfItExists("rect_y_first", rectangle.y1),
+        getValueFromFormIfItExists("rect_x_second", rectangle.x2),
+        -getValueFromFormIfItExists("rect_y_second", rectangle.y2)
     );
 
     return rectangle;
@@ -104,12 +108,12 @@ function getTriangleFromMenu()
     triangle.prototype.setOutlineThickness(getOutlineThickness());
 
     triangle.setCoordinates(
-        Number(getValueFromFormIfItExists("triangle_x_first", triangle.x1)),
-        -Number(getValueFromFormIfItExists("triangle_y_first", triangle.y1)),
-        Number(getValueFromFormIfItExists("triangle_x_second", triangle.x2)),
-        -Number(getValueFromFormIfItExists("triangle_y_second", triangle.y2)),
-        Number(getValueFromFormIfItExists("triangle_x_third", triangle.x3)),
-        -Number(getValueFromFormIfItExists("triangle_y_third", triangle.y3))
+        getValueFromFormIfItExists("triangle_x_first", triangle.x1),
+        -getValueFromFormIfItExists("triangle_y_first", triangle.y1),
+        getValueFromFormIfItExists("triangle_x_second", triangle.x2),
+        -getValueFromFormIfItExists("triangle_y_second", triangle.y2),
+        getValueFromFormIfItExists("triangle_x_third", triangle.x3),
+        -getValueFromFormIfItExists("triangle_y_third", triangle.y3)
     );
 
     return triangle;
@@ -201,6 +205,27 @@ function setNewMenu()
     {
         rectangleMenu.style.display = "block";
     }
+}
+
+function resetShapeCharacteristics()
+{
+    var perimeterTab = document.getElementById("perimeter");
+    var areaTab = document.getElementById("area_size");
+
+    perimeterTab.innerText = "Perimeter";
+    areaTab.innerText = "Area size";
+}
+
+function setShapeCharacteristics(shape)
+{
+    var perimeterTab = document.getElementById("perimeter");
+    var areaTab = document.getElementById("area_size");
+
+    var perimeter = String(shape.getPerimeter()).substr(0, CHARACTERISTICS_SYMBOLS_COUNT);
+    var areaSize = String(shape.getAreaSize()).substr(0, CHARACTERISTICS_SYMBOLS_COUNT);
+
+    perimeterTab.innerHTML = "Perimeter: " + "<strong>" + perimeter + "</strong>";
+    areaTab.innerHTML = "Area size: " + "<strong>" + areaSize + "</strong>";
 }
 
 function isFormsDataValid()
