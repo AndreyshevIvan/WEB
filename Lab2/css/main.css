@@ -75,6 +75,7 @@ h1
     display: block;
     width: 100%;
     text-align: center;
+    text-align: center;
 }
 
 .selecting_shapes_block
@@ -110,6 +111,7 @@ h1
 {
     padding: 10px 20px;
     border-bottom: 1px solid #ECF0F1;
+    cursor: default;
 }
 
 .triangle_setting,

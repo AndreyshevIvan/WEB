@@ -18,7 +18,7 @@ class Circle
 
     getAreaSize()
     {
-        var areaSize = Math.PI * this.radius * this.radius;
+        var areaSize = Math.PI * Math.pow(this.radius, 2);
 
         return areaSize;
     }
