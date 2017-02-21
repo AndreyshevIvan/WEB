@@ -1,25 +1,22 @@
-function init()
+function initDrawing()
 {
     initDrawingArea();
-    selectShapeMenu();
+    syncShapeMenu();
 }
 
-function selectShapeMenu()
+function syncShapeMenu()
 {
     resetDrawingArea();
     resetMenu();
-    setNewMenu()
+    setNewMenu();
 }
 
 function drawShape()
 {
     resetDrawingArea();
-    if (isFormsDataValid())
-    {
-        var shape = getShapeFromMenuAndUpdateThem();
-        shape.draw();
-        setShapeCharacteristics(shape);
+    var shape = getShapeFromMenuAndUpdateThem();
+    shape.draw();
+    setShapeCharacteristicsToMenu(shape);
 
-        delete shape;
-    }
+    delete shape;
 }

@@ -17,6 +17,7 @@ input
 {
     border: 0;
     background-color: #ECF0F1;
+    font-weight: 800;
 }
 
 input:focus, textarea:focus, keygen:focus, select:focus
@@ -27,6 +28,7 @@ input:focus, textarea:focus, keygen:focus, select:focus
 :focus
 {
     outline: none;
+    box-shadow: 0 0 10px #2C3E50, 0 0 10px #2C3E50;
 }
 
 h1
@@ -53,18 +55,19 @@ h1
 {
     position: relative;
     width: 1000px;
-    margin: 50px auto 50px auto;
+    margin: 50px auto;
 }
 
 .menu
 {
     box-sizing: border-box;
-    padding: 20px 20px;
+    padding: 20px;
     float: left;
     color: #ECF0F1;
     width: 300px;
     height: 700px;
     background-color: #B23B2E;
+    border-radius: 10px 0 0 10px;
 }
 
 .application_title
@@ -80,7 +83,7 @@ h1
     border-top: 1px solid #ECF0F1;
     margin-top: 20px;
     box-sizing: border-box;
-    padding: 20px 20px;
+    padding: 20px;
 }
 
 .shape_selector
@@ -91,9 +94,8 @@ h1
     font-size: 20px;
     width: 100%;
     background-color: #ECF0F1;
-    font-weight: 800;
     border-radius: 3px;
-    padding: 0 0 0 6px;
+    padding-left: 6px;
 }
 
 .common_settings
@@ -106,7 +108,7 @@ h1
 
 .shape_characteristics
 {
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     border-bottom: 1px solid #ECF0F1;
 }
 
@@ -187,6 +189,7 @@ h1
 
 .drawing_area
 {
+    border-radius: 0 10px 10px 0;
     display: block;
     float: left;
     background-color: #ECF0F1;

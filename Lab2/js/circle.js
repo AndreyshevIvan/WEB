@@ -38,8 +38,6 @@ class Circle
         }
     }
 
-
-
     draw()
     {
         var canvas = document.getElementById("drawing_area");
@@ -48,12 +46,9 @@ class Circle
         ctx.beginPath();
         ctx.strokeStyle = this.prototype.getOutlineColor();
         ctx.lineWidth = this.prototype.getOutlineThickness() * 2;
-        ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI, true);
-        ctx.stroke();
-
-        ctx.beginPath()
         ctx.fillStyle = this.prototype.getFillColor();
         ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI, true);
         ctx.fill();
+        ctx.stroke();
     }
 }

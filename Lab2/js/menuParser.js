@@ -216,7 +216,7 @@ function resetShapeCharacteristics()
     areaTab.innerText = "Area size";
 }
 
-function setShapeCharacteristics(shape)
+function setShapeCharacteristicsToMenu(shape)
 {
     var perimeterTab = document.getElementById("perimeter");
     var areaTab = document.getElementById("area_size");
@@ -226,9 +226,4 @@ function setShapeCharacteristics(shape)
 
     perimeterTab.innerHTML = "Perimeter: " + "<strong>" + perimeter + "</strong>";
     areaTab.innerHTML = "Area size: " + "<strong>" + areaSize + "</strong>";
-}
-
-function isFormsDataValid()
-{
-    return true;
 }
