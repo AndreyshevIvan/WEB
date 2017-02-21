@@ -22,7 +22,9 @@ class Triangle
 
     getAreaSize()
     {
-        var areaSize = ((this.x1 - this.x3) * (this.y2 - this.y3) - (this.x2 - this.x3) * (this.y1 - this.y3)) / 2;
+        var firstRect = (this.x1 - this.x3) * (this.y2 - this.y3);
+        var secondRect = (this.x2 - this.x3) * (this.y1 - this.y3);
+        var areaSize = (firstRect - secondRect) / 2;
 
         return areaSize;
     }
@@ -37,14 +39,52 @@ class Triangle
         return perimeter;
     }
 
-    setCoordinates(x1, y1, x2, y2, x3, y3)
+    setFirstPointCoordinates(x1, y1)
     {
         this.x1 = Number(x1);
         this.y1 = Number(y1);
+    }
+
+    setSecondPointCoordinates(x2, y2)
+    {
         this.x2 = Number(x2);
         this.y2 = Number(y2);
+    }
+
+    setThirdPointCoordinates(x3, y3)
+    {
         this.x3 = Number(x3);
         this.y3 = Number(y3);
+    }
+
+    getCoordinateX1()
+    {
+        return this.x1;
+    }
+
+    getCoordinateX2()
+    {
+        return this.x2;
+    }
+
+    getCoordinateX3()
+    {
+        return this.x3;
+    }
+
+    getCoordinateY1()
+    {
+        return this.y1;
+    }
+
+    getCoordinateY2()
+    {
+        return this.y2;
+    }
+
+    getCoordinateY3()
+    {
+        return this.y3;
     }
 
     draw()

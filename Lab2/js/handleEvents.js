@@ -13,10 +13,8 @@ function syncShapeMenu()
 
 function drawShape()
 {
-    resetDrawingArea();
     var shape = getShapeFromMenuAndUpdateThem();
+    resetDrawingArea();
     shape.draw();
     setShapeCharacteristicsToMenu(shape);
-
-    delete shape;
 }

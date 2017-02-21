@@ -10,10 +10,10 @@ class Circle
         this.centerY = 0;
     }
 
-    setPosition(x, y)
+    setPosition(coordinateX, coordinateY)
     {
-        this.centerX = Number(x);
-        this.centerY = Number(y);
+        this.centerX = Number(coordinateX);
+        this.centerY = Number(coordinateY);
     }
 
     getAreaSize()
@@ -21,6 +21,21 @@ class Circle
         var areaSize = Math.PI * this.radius * this.radius;
 
         return areaSize;
+    }
+
+    getRadius()
+    {
+        return this.radius;
+    }
+
+    getPositionX()
+    {
+        return this.centerX;
+    }
+
+    getPositionY()
+    {
+        return this.centerY;
     }
 
     getPerimeter()

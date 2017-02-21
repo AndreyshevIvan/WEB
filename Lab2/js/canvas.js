@@ -36,12 +36,12 @@ function setAxisImage()
     var ctx = drawingArea.getContext("2d");
 
     var axis = new Image();
-    axis.src = "../images/axis.png"
+    axis.src = "../images/axis.png";
     axis.opacity = 0.3;
     axis.onload = function()
     {
         ctx.globalAlpha = AXIS_IMAGE_OPACITY;
         ctx.drawImage(axis, -AXIS_IMAGE_OFFSET_X, -AXIS_IMAGE_OFFSET_Y, 100, 100);
         ctx.globalAlpha = 1;
-    }
+    };
 }
