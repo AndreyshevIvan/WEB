@@ -34,6 +34,7 @@ input:focus, textarea:focus, keygen:focus, select:focus
 h1
 {
     font-size: 34px;
+    letter-spacing: -0.3px;
 }
 
 .clear
@@ -80,11 +81,11 @@ h1
 
 .selecting_shapes_block
 {
-    width: 100%;
+    width: 220px;
     border-top: 1px solid #ECF0F1;
-    margin-top: 20px;
+    margin: 20px auto 0 auto;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .shape_selector
@@ -102,15 +103,19 @@ h1
 .common_settings
 {
     box-sizing: border-box;
-    width: 100%;
+    width: 220px;
+    margin: 0 auto;
     border-top: 1px solid #ECF0F1;
-    padding: 10px 20px 0 20px;
+    padding: 10px 0 0 0;
+    font-size: 15px;
 }
 
 .shape_characteristics
 {
-    padding: 10px 20px;
+    padding: 10px 0;
     border-bottom: 1px solid #ECF0F1;
+    width: 220px;
+    margin: 0 auto;
     cursor: default;
 }
 
@@ -119,8 +124,9 @@ h1
 .circle_setting
 {
     box-sizing: border-box;
-    width: 100%;
-    padding: 0 20px 10px 20px;
+    width: 220px;
+    padding: 0 0 10px 0;
+    margin: 0 auto;
     border-bottom: 1px solid #ECF0F1;
 }
 
@@ -154,12 +160,14 @@ h1
 {
     float: left;
     width: 40%;
+    font-size: 15px;
 }
 
 .coordinate_y
 {
     float: right;
     width: 40%;
+    font-size: 15px;
 }
 
 .draw_button

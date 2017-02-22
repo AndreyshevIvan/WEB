@@ -1,51 +1,48 @@
 var STANDART_CIRCLE_RADIUS = 40;
 
-class Circle
+function Circle()
 {
-    constructor()
-    {
-        this.prototype = Object.create(new Shape());
-        this.radius = STANDART_CIRCLE_RADIUS;
-        this.centerX = 0;
-        this.centerY = 0;
-    }
+    this.prototype = Object.create(new Shape());
+    this.radius = STANDART_CIRCLE_RADIUS;
+    this.centerX = 0;
+    this.centerY = 0;
 
-    setPosition(coordinateX, coordinateY)
+    this.setPosition = function(coordinateX, coordinateY)
     {
         this.centerX = Number(coordinateX);
         this.centerY = Number(coordinateY);
     }
 
-    getAreaSize()
+    this.getAreaSize = function()
     {
         var areaSize = Math.PI * Math.pow(this.radius, 2);
 
         return areaSize;
     }
 
-    getRadius()
+    this.getRadius = function()
     {
         return this.radius;
     }
 
-    getPositionX()
+    this.getPositionX = function()
     {
         return this.centerX;
     }
 
-    getPositionY()
+    this.getPositionY = function()
     {
         return this.centerY;
     }
 
-    getPerimeter()
+    this.getPerimeter = function()
     {
         var perimeter = 2 * Math.PI * this.radius;
 
         return perimeter;
     }
 
-    setRadius(radius)
+    this.setRadius = function(radius)
     {
         if (radius >= 0)
         {
@@ -53,7 +50,7 @@ class Circle
         }
     }
 
-    draw()
+    this.draw = function()
     {
         var canvas = document.getElementById("drawing_area");
         var ctx = canvas.getContext("2d");
@@ -63,7 +60,7 @@ class Circle
         ctx.lineWidth = this.prototype.getOutlineThickness() * 2;
         ctx.fillStyle = this.prototype.getFillColor();
         ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI, true);
-        ctx.fill();
         ctx.stroke();
+        ctx.fill();
     }
 }

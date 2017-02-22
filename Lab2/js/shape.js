@@ -2,41 +2,39 @@ var STANDART_FILL_COLOR = "#3498DB";
 var STANDART_OUTLINE_COLOR = "#2C3E50";
 var STANDART_OUTLINE_THICKNESS = 10;
 
-class Shape
+function Shape()
 {
-    constructor()
-    {
-        this.fillColor = STANDART_FILL_COLOR;
-        this.outlineColor = STANDART_OUTLINE_COLOR;
-        this.outlineThickness = STANDART_OUTLINE_THICKNESS;
-    }
 
-    setFillColor(color)
+    this.fillColor = STANDART_FILL_COLOR;
+    this.outlineColor = STANDART_OUTLINE_COLOR;
+    this.outlineThickness = STANDART_OUTLINE_THICKNESS;
+
+    this.setFillColor = function(color)
     {
         this.fillColor = color;
     }
 
-    setOutlineColor(color)
+    this.setOutlineColor = function(color)
     {
         this.outlineColor = color;
     }
 
-    setOutlineThickness(outlineThickness)
+    this.setOutlineThickness = function(outlineThickness)
     {
         this.outlineThickness = outlineThickness;
     }
 
-    getFillColor()
+    this.getFillColor = function()
     {
         return this.fillColor;
     }
 
-    getOutlineColor()
+    this.getOutlineColor = function()
     {
         return this.outlineColor;
     }
 
-    getOutlineThickness()
+    this.getOutlineThickness = function()
     {
         return this.outlineThickness;
     }

@@ -24,13 +24,14 @@ function resetMenu()
     var circleMenu = document.getElementById("circle_settings");
     var triangleMenu = document.getElementById("triangle_settings");
     var rectangleMenu = document.getElementById("rectangle_settings");
+
     circleMenu.style.display = "none";
     triangleMenu.style.display = "none";
     rectangleMenu.style.display = "none";
 
-    for (var elementNumber = 0; elementNumber < elemets.length; elementNumber += 1)
+    for (var elemNum = 0; elemNum < elemets.length; elemNum += 1)
     {
-        elemets[elementNumber].value = "";
+        elemets[elemNum].value = "";
     }
 
     resetShapeCharacteristics();
