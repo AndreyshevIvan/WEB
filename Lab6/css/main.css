@@ -1,0 +1,33 @@
+body
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: #7E8AA2;
+    font-family: "Roboto Light", sans-serif;
+    color: whitesmoke;
+}
+
+h1, h2, h3, h4, p
+{
+    margin: 0px;
+}
+
+.clear
+{
+    clear: left;
+}
+
+.application_box
+{
+    text-align: center;
+    padding: 40px 0;
+}
+
+.drawing_area
+{
+    width: 800px;
+    height: 800px;
+    display: inline-block;
+    background-color: white;
+}
