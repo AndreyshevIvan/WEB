@@ -4,8 +4,8 @@ const Y_MIN: number = 0.0000907687489 - 0.00000000374 / 2;
 const Y_MAX: number = 0.0000907687489 + 0.00000000374 / 2;
 const WIDTH: number = 800;
 const HEIGHT: number = 800;
-const ITERATIONS: number = 8000;
-const ESCAPE_RADIUS: number = 6;
+const ITERATIONS: number = 1000;
+const ESCAPE_RADIUS: number = 4;
 
 const CR_STEP: number = (X_MAX - X_MIN) / WIDTH;
 const CI_STEP: number = (Y_MAX - Y_MIN) / HEIGHT;
@@ -25,7 +25,7 @@ export class CSetApplication {
     public enterProcess(): void {
         for (let y = 0; y < HEIGHT; y++)
         {
-            for (var x = 0; x < WIDTH; x++)
+            for (let x = 0; x < WIDTH; x++)
             {
                 const Cr: number = X_MIN + CR_STEP * x;
                 const Ci: number = Y_MIN + CI_STEP * y;
@@ -43,9 +43,12 @@ export class CSetApplication {
                     Tr = Zr * Zr;
                     Ti = Zi * Zi;
                 }
-                const denominator: number = n / ITERATIONS;
-                const color: number = (n == ITERATIONS) ? 0 : (255 * denominator);
-                this.canvas.fillStyle = "#0000" + Math.floor(color);
+                const color: number = (n == ITERATIONS) ? 0 : Math.floor(255 * n / ITERATIONS);
+                let strColor: string = color.toString(16);
+                if (color < 9) {
+                    strColor = "0" + strColor;
+                }
+                this.canvas.fillStyle = "#0000" + strColor;
                 this.canvas.fillRect(x, y, 1, 1);
             }
         }
