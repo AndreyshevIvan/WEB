@@ -5,14 +5,14 @@ export class Client {
     }
 
     private doGet(): boolean {
-        const console: HTMLTextAreaElement = document.getElementById("console") as HTMLTextAreaElement;
-        console.textContent = "do get";
+        const console: HTMLElement = document.getElementById("console");
+        console.innerHTML += "do get";
         return true;
     }
 
     private doDelete(): boolean {
-        const console: HTMLTextAreaElement = document.getElementById("console") as HTMLTextAreaElement;
-        console.textContent = "do delete";
+        const console: HTMLElement = document.getElementById("console");
+        console.innerHTML += "do delete";
         return true;
     }
 

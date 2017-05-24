@@ -1,12 +1,16 @@
 class Application extends React.Component {
+    doRequest(event) {
+        event.preventDefault();
+        return false;
+    }
     render() {
         return (
-            <div id="application_inner" className="application_inner">
+            <form id="application_inner" className="application_inner" onSubmit={ this.doRequest }>
                 <CatalogDisplay/>
                 <Cotroller/>
                 <Console/>
                 <div className="clear"></div>
-            </div>
+            </form>
         )
     }
 };
@@ -14,40 +18,26 @@ class Application extends React.Component {
 class CatalogDisplay extends React.Component {
     render() {
         return (
-            <textarea
-                id="catalog_display"
-                className="catalog_display"
-                readOnly="readonly"
-                wrap="off"
-            ></textarea>
+            <div id="catalog_display" className="catalog_display" ></div>
         )
     }
 }
 class Cotroller extends React.Component {
-    doRequest(event) {
-        event.preventDefault();
-        return false;
-    }
     render() {
         return (
-            <form className="controller_inner" onSubmit={ this.doRequest }>
-                <input type="text" value="" id="request_input" className="request_input" />
-                <input type="submit" value="GET" id="get_button" className="get_button"></input>
-                <input type="submit" value="DELETE" id="delete_button" className="delete_button"></input>
+            <div className="controller_inner">
+                <input type="text" defaultValue="" id="request_input" wrap="off" className="request_input" />
+                <input type="submit" value="GET" id="get_button" className="get_button" />
+                <input type="submit" value="DELETE" id="delete_button" className="delete_button" />
                 <div className="clear"></div>
-            </form>
+            </div>
         )
     }
 }
 class Console extends React.Component {
     render() {
         return (
-            <textarea
-                id="console"
-                className="console"
-                readOnly="readonly"
-                wrap="off"
-            ></textarea>
+            <div id="console" className="console"></div>
         )
     }
 }
