@@ -24,14 +24,18 @@ class CatalogDisplay extends React.Component {
     }
 }
 class Cotroller extends React.Component {
+    doRequest(event) {
+        event.preventDefault();
+        return false;
+    }
     render() {
         return (
-            <div className="controller_inner">
+            <form className="controller_inner" onSubmit={ this.doRequest }>
                 <input type="text" value="" id="request_input" className="request_input" />
-                <input type="button" value="GET" className="get_button"></input>
-                <input type="button" value="DELETE" className="delete_button"></input>
+                <input type="submit" value="GET" id="get_button" className="get_button"></input>
+                <input type="submit" value="DELETE" id="delete_button" className="delete_button"></input>
                 <div className="clear"></div>
-            </div>
+            </form>
         )
     }
 }

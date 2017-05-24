@@ -1,11 +1,9 @@
-import { CMyClass } from "./MyClass";
+import { Client } from "./Client";
 
 window.onload = (): void => {
     main();
 };
 
 function main() {
-    const console: HTMLTextAreaElement = document.getElementById("console") as HTMLTextAreaElement;
-    const myClass: CMyClass = new CMyClass();
-    console.textContent = myClass.getMessage();
+    const myClass: Client = new Client();
 }
