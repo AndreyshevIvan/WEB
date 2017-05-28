@@ -139,14 +139,10 @@ void CServer::WaitRequest(int &clientSocket)
 void CServer::WorkWithRequest(char buffer[], int clientSocket)
 {
 	stringstream response;
-	if (!CRequest::DoRequest(buffer, response))
-	{
-		CConsole::ErrLog("Invalid request");
-		return;
-	}
-
+	CRequest::DoRequest(buffer, response);
 	auto respLen = response.str().length();
 	int recvResult = send(clientSocket, response.str().c_str(), respLen, 0);
+
 	if (recvResult == SOCKET_ERROR)
 	{
 		CConsole::ErrLog("Send failed: ", WSAGetLastError());
