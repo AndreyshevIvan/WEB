@@ -1,7 +1,7 @@
 #include "Server.h"
 #include "Exception.h"
 #include "Console.h"
-#include <sstream>
+#include "Request.h"
 
 namespace
 {
@@ -12,6 +12,31 @@ namespace
 
 using namespace std;
 
+void CServer::Start()
+{
+	CConsole::LogTitle("Start server");
+	CServer* server = nullptr;
+
+	try
+	{
+		server = new (std::nothrow) CServer;
+		CConsole::Log("Enter process loop");
+		while (true)
+		{
+			int clientSocket = INVALID_SOCKET;
+			server->WaitRequest(clientSocket);
+			closesocket(clientSocket);
+		}
+	}
+	catch (const exception &e)
+	{
+		server->Cleanup();
+		delete server;
+		throw e;
+	}
+	CConsole::Log("Server was stopped");
+}
+
 CServer::CServer()
 {
 	int result = WSAStartup(MAKEWORD(2, 2), &m_wsaData);
@@ -20,28 +45,16 @@ CServer::CServer()
 		throw new CException("WSAStartup failed: ", result);
 	}
 
-	try
-	{
-		CConsole::Log("Initialize adress");
-		InitAdress();
-		CConsole::Log("The address was initialized successfully");
-		CConsole::Log("Initialize listen socket");
-		InitListenSocket();
-		CConsole::Log("The listen socket was initialized successfully");
-		CConsole::Log("Initialize client socket");
-		InitClientSocket();
-		CConsole::Log("The client socket was initialized successfully");
-	}
-	catch (const std::exception &e)
-	{
-		Cleanup();
-		throw e;
-	}
-	CConsole::Log("---Connection complete---");
+	InitAdress();
+	InitListenSocket();
+	InitClientSocket();
+
+	CConsole::LogTitle("Connection complete");
 }
 
 void CServer::InitAdress()
 {
+	CConsole::Log("Initialize adress");
 	m_addres = NULL;
 	ZeroMemory(&m_hints, sizeof(m_hints));
 
@@ -55,14 +68,15 @@ void CServer::InitAdress()
 	{
 		throw new CException("getaddrinfo failed: ", code);
 	}
+	CConsole::Log("The address was initialized successfully");
 }
 
 void CServer::InitListenSocket()
 {
+	CConsole::Log("Initialize listen socket");
 	const auto family = m_addres->ai_family;
 	const auto sockType = m_addres->ai_socktype;
 	const auto protocol = m_addres->ai_protocol;
-	const auto addrLen = (int)m_addres->ai_addrlen;
 
 	CConsole::Log("Create socket", 2);
 	m_listenSocket = socket(family, sockType, protocol);
@@ -72,6 +86,7 @@ void CServer::InitListenSocket()
 	}
 
 	CConsole::Log("Bind socket", 2);
+	const auto addrLen = (int)m_addres->ai_addrlen;
 	int code = bind(m_listenSocket, m_addres->ai_addr, addrLen);
 	if (code == SOCKET_ERROR)
 	{
@@ -83,42 +98,22 @@ void CServer::InitListenSocket()
 	{
 		throw CException("Listen failed with error: ", WSAGetLastError());
 	}
+	CConsole::Log("The listen socket was initialized successfully");
 }
 
 void CServer::InitClientSocket()
 {
+	CConsole::Log("Initialize client socket");
 	CConsole::Log("Waiting connection...", 2);
 	m_clientSocket = accept(m_listenSocket, NULL, NULL);
 	if (m_clientSocket == INVALID_SOCKET)
 	{
 		throw CException("Accept failed: ", WSAGetLastError());
 	}
+	CConsole::Log("The client socket was initialized successfully");
 }
 
-void CServer::Start()
-{
-	CConsole::Log("Start server");
-	CServer server;
-
-	try
-	{
-		CConsole::Log("Enter process loop");
-		while (true)
-		{
-			int clientSocket = INVALID_SOCKET;
-			server.ProcessRequest(clientSocket);
-			closesocket(clientSocket);
-		}
-	}
-	catch (const std::exception &e)
-	{
-		server.Cleanup();
-		throw e;
-	}
-	CConsole::Log("Server was stopped");
-}
-
-void CServer::ProcessRequest(int &clientSocket)
+void CServer::WaitRequest(int &clientSocket)
 {
 	char buffer[BUFFER_MAX_SIZE];
 
@@ -134,37 +129,24 @@ void CServer::ProcessRequest(int &clientSocket)
 	}
 	else if (recvResult == 0)
 	{
-		cerr << "connection closed...\n";
+		CConsole::ErrLog("Connection closed...");
 		return;
 	}
 
-	WorkWithRequest(buffer, clientSocket, recvResult);
+	WorkWithRequest(buffer, clientSocket);
 }
 
-void CServer::WorkWithRequest(char buffer[], int clientSocket, int recvResult)
+void CServer::WorkWithRequest(char buffer[], int clientSocket)
 {
-	std::stringstream response;
-	std::stringstream responseBody;
+	stringstream response;
+	if (!CRequest::DoRequest(buffer, response))
+	{
+		CConsole::ErrLog("Invalid request");
+		return;
+	}
 
-	buffer[recvResult] = '\0';
-	responseBody << "<title>Test C++ HTTP Server</title>\n"
-		<< "<h1>Test page</h1>\n"
-		<< "<p>This is body of the test page...</p>\n"
-		<< "<h2>Request headers</h2>\n"
-		<< "<pre>" << buffer << "</pre>\n"
-		<< "<em><small>Test C++ Http Server</small></em>\n";
-
-	response << "HTTP/1.1 200 OK\r\n"
-		<< "Version: HTTP/1.1\r\n"
-		<< "Content-Type: text/html; charset=utf-8\r\n"
-		<< "Content-Length: " << responseBody.str().length()
-		<< "\r\n\r\n"
-		<< responseBody.str();
-
-	auto flags = 0;
 	auto respLen = response.str().length();
-	recvResult = send(clientSocket, response.str().c_str(), respLen, flags);
-
+	int recvResult = send(clientSocket, response.str().c_str(), respLen, 0);
 	if (recvResult == SOCKET_ERROR)
 	{
 		CConsole::ErrLog("Send failed: ", WSAGetLastError());

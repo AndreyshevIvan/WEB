@@ -11,19 +11,17 @@ class CServer
 public:
 	static void Start();
 
-protected:
-	void ProcessRequest(int &clientSocket);
-	void Cleanup();
-
 private:
 	CServer();
+
+	void WaitRequest(int &clientSocket);
+	void WorkWithRequest(char buffer[], int clientSocket);
 
 	void InitAdress();
 	void InitListenSocket();
 	void InitClientSocket();
 
-	void WorkWithRequest(char buffer[], int clientSocket, int recvResult);
-	std::stringstream GetResponse(const std::stringstream &body);
+	void Cleanup();
 
 	WSAData m_wsaData;
 	int m_listenSocket;

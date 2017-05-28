@@ -12,6 +12,10 @@ namespace
 class CConsole
 {
 public:
+	static void LogTitle(const std::string &title)
+	{
+		std::cout << "---" << title << "---" << std::endl;
+	}
 	static void Log(const std::string &message, size_t level = 0)
 	{
 		std::cout << Plank(level) << message << std::endl;
