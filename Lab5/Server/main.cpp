@@ -1,4 +1,5 @@
 #include "Server.h"
+#include "Console.h"
 
 int main()
 {
@@ -8,9 +9,8 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what();
+		CConsole::ErrLog(e.what());
 	}
 
-	system("pause");
 	return 0;
 }

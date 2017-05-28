@@ -6,16 +6,14 @@
 #include <iostream>
 #include <sstream>
 
-namespace
-{
-	const int MAX_CLIENT_BUFFER_SIZE = 1024;
-}
-
 class CServer
 {
 public:
 	static void Start();
-	void ProcessRequest();
+
+protected:
+	void ProcessRequest(int &clientSocket);
+	void Cleanup();
 
 private:
 	CServer();
@@ -24,6 +22,7 @@ private:
 	void InitListenSocket();
 	void InitClientSocket();
 
+	void WorkWithRequest(char buffer[], int clientSocket, int recvResult);
 	std::stringstream GetResponse(const std::stringstream &body);
 
 	WSAData m_wsaData;
