@@ -15,19 +15,19 @@ namespace
 		{ "delete", RequestType::_DELETE }
 	};	
 
-	const map<CodeType, string> CODES = {
+	const map<RCode, string> CODES = {
 		{ OK, "200 OK" },
 		{ NOT_FOUND, "404 Not found"}
 	};
 
-	const map<FileType, string> TYPES = {
+	const map<FType, string> TYPES = {
 		{ HTML, "text/html; charset=utf-8" },
 		{ JS, "text/javascript; charset=utf-8" },
 		{ JPEG, "image/jpeg" },
 		{ TEXT, "text/plain; charset=utf-8" }
 	};
 
-	const map<string, FileType> TYPE_EXTENSION = {
+	const map<string, FType> TYPE_EXTENSION = {
 		{ ".html", HTML },
 		{ ".js", JS },
 		{ ".jpeg", JPEG },
@@ -39,6 +39,7 @@ void CRequest::DoRequest(char buffer[], stringstream &response)
 {
 	RequestType type;
 	string body;
+	response.clear();
 
 	int parseResult = Parse(buffer, type, body);
 	if (parseResult != SUCCESS)
@@ -78,7 +79,7 @@ int CRequest::Parse(char buffer[], RequestType &type, string &body)
 	}
 
 	type = typeInMap->second;
-	body = tmpBodyStr;
+	body = ROOT.string() + tmpBodyStr;
 
 	return SUCCESS;
 }
@@ -91,52 +92,73 @@ bool CRequest::IsBodyValid(const std::string &body)
 
 void CRequest::DoGet(const std::string &url, std::stringstream &response)
 {
-	if (url == "/" || url == "")
+	const string index = ROOT.string() + "/" + "index.html";
+
+	if (url == ROOT.string() + "/")
 	{
 		auto rootJson = to_json(recursive_directory_iterator(ROOT));
-		response << Response(CODES.at(OK), TYPES.at(HTML), rootJson);
+		response << Response(OK, HTML, rootJson);
+		return;
+	}
+	if (url == index)
+	{
+		response << GetResponseWithFile("index.html");
 		return;
 	}
 
-	response << GetResponseWithFile(ROOT.string() + url);
+	response << GetResponseWithFile(url);
 }
 
 void CRequest::DoDelete(const std::string &url, std::stringstream &response)
 {
-	response << "HTTP/1.1 200 OK\r\n"
-		<< "Version: HTTP/1.1\r\n"
-		<< "Content-Type: text/html; charset=utf-8\r\n"
-		<< "\r\n\r\n"
-		<< "GET";
+	if (!exists(url))
+	{
+		response << Response(NOT_FOUND, TEXT, CODES.at(NOT_FOUND));
+		return;
+	}
+
+	if (!is_regular_file(url))
+	{
+		response << Response(NOT_FOUND, TEXT, url + " is not a file");
+		return;
+	}
+
+	remove(url);
+	response << Response(OK, TEXT, url + " was deleted");
 }
 
 std::string CRequest::GetResponseWithFile(std::string filePath)
 {
 	ifstream file(filePath, ios::binary);
-	if (!file.is_open())
+	auto extension = get_extension(filePath);
+	auto isTypeValid = TYPE_EXTENSION.find(extension) != TYPE_EXTENSION.end();
+	if (!file.is_open() || !isTypeValid)
 	{
-		return Response(CODES.at(NOT_FOUND), TYPES.at(TEXT), CODES.at(NOT_FOUND));
+		return Response(NOT_FOUND, TEXT, CODES.at(NOT_FOUND));
 	}
 
-	auto extension = get_extension(filePath);
 	auto type = TYPE_EXTENSION.at(extension);
-
 	string fileStr;
 	string tmp;
+
 	while (getline(file, tmp))
 	{
-		tmp += "\n";
+		tmp += "\r\n";
 		fileStr += tmp;
 	}
 	file.close();
-	return Response(CODES.at(OK), TYPES.at(TEXT), fileStr);
+
+	return Response(OK, type, fileStr);
 }
 
-std::string CRequest::Response(Code code, Type type, const std::string &body)
+std::string CRequest::Response(RCode code, FType type, const std::string &body)
 {
-	std::string response = "HTTP/1.1 " + code + "\r\n"
+	auto codeStr = CODES.at(code);
+	auto typeStr = TYPES.at(type);
+
+	std::string response = "HTTP/1.1 " + codeStr + "\r\n"
 		+ "Version: HTTP/1.1\r\n"
-		+ "Content-Type: " + type + "\r\n"
+		+ "Content-Type: " + typeStr + "\r\n"
 		+ "Content-Length: " + to_string(body.length())
 		+ "\r\n\r\n"
 		+ body;

@@ -160,7 +160,7 @@ module.exports = function(grunt)
 
         open: {
             dev: {
-                path: 'http://localhost:8080/index.html'
+                path: 'http://localhost:80/index.html'
             }
         },
 
@@ -199,7 +199,7 @@ module.exports = function(grunt)
             'clean:scripts',
             'copy:systemjs',
             'hashres:prod',
-            'connect:server',
+            'open',
             'watch'
     ]);
 };

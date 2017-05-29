@@ -10,7 +10,7 @@ enum class RequestType
 	_DELETE,
 };
 
-enum FileType
+enum FType
 {
 	TEXT,
 	HTML,
@@ -18,7 +18,7 @@ enum FileType
 	JPEG,
 };
 
-enum CodeType
+enum RCode
 {
 	OK,
 	NOT_FOUND,
@@ -31,9 +31,6 @@ enum ParseCode
 	INVALID_REQUEST_BODY,
 };
 
-typedef const std::string& Code;
-typedef const std::string& Type;
-
 class CRequest
 {
 public:
@@ -44,7 +41,7 @@ private:
 	static void DoDelete(const std::string &url, std::stringstream &response);
 
 	static std::string GetResponseWithFile(std::string filePath);
-	static std::string Response(Code code, Type type, const std::string &body);
+	static std::string Response(RCode code, FType type, const std::string &body);
 
 	static int Parse(char buffer[], RequestType &type, std::string &body);
 	static bool IsBodyValid(const std::string &body);

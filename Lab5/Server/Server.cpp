@@ -1,3 +1,5 @@
+#include <filesystem>
+
 #include "Server.h"
 #include "Exception.h"
 #include "Console.h"
@@ -11,6 +13,7 @@ namespace
 }
 
 using namespace std;
+using namespace std::experimental::filesystem;
 
 void CServer::Start()
 {
@@ -140,7 +143,8 @@ void CServer::WorkWithRequest(char buffer[], int clientSocket)
 {
 	stringstream response;
 	CRequest::DoRequest(buffer, response);
-	auto respLen = response.str().length();
+	auto responseStr = response.str();
+	auto respLen = responseStr.length();
 	int recvResult = send(clientSocket, response.str().c_str(), respLen, 0);
 
 	if (recvResult == SOCKET_ERROR)
