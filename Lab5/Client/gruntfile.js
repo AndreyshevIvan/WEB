@@ -15,7 +15,7 @@ module.exports = function(grunt)
                         }
                     ]
             },
-            index: {
+            html: {
                 files:
                     [
                         {
@@ -67,7 +67,7 @@ module.exports = function(grunt)
             scripts: ['build/scripts.js'],
             js_min: ['build/*.js'],
             css_min: ['build/*.css'],
-            index: ['build/index.html']
+            html: ['build/index.html']
         },
 
         uglify: {
@@ -106,35 +106,41 @@ module.exports = function(grunt)
                     'build/system.js'
                 ],
 
-                dest: ['build/index.html']
+                dest: ['*.html']
             }
         },
 
         watch: {
-
             css: {
                 files: ['css/**/*.*'],
-                tasks: ['clean:css_min', 'cssmin', 'hashres:prod'],
-                options: {livereload: true}
-            },
-
-            scripts: {
-                files: ['ts/**/*.*'],
-                tasks: ['clean:js_min',
-                        'shell',
-                        'tslint',
-                        'ts',
-                        'uglify',
-                        'clean:scripts',
-                        'copy:systemjs',
-                        'hashres:prod'
+                tasks: [
+                    'clean:css_min',
+                    'cssmin',
+                    'hashres:prod'
                 ],
                 options: {livereload: true}
             },
-
+            scripts: {
+                files: ['ts/**/*.*'],
+                tasks: [
+                    'clean:js_min',
+                    'shell',
+                    'tslint',
+                    'ts',
+                    'uglify',
+                    'clean:scripts',
+                    'copy:systemjs',
+                    'hashres:prod'
+                ],
+                options: {livereload: true}
+            },
             html: {
                 files: ['*.html'],
-                tasks: ['clean:html', 'copy:index'],
+                tasks: [
+                    'clean:html',
+                    'hashres:prod',
+                    'copy:html'
+                ],
                 options: {livereload: true}
             }
         },
@@ -144,7 +150,7 @@ module.exports = function(grunt)
                 path: 'Server.exe'
             },
             browser: {
-                path: 'http://127.0.0.1:80/build/index.html'
+                path: 'http://localhost/build/index.html'
             }
         },
 
@@ -177,8 +183,8 @@ module.exports = function(grunt)
             'cssmin',
             'clean:scripts',
             'copy:systemjs',
-            'copy:index',
             'hashres:prod',
+            'copy:html',
             'copy:server',
             'open:server',
             'open:browser',

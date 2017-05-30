@@ -69,8 +69,7 @@ int CRequest::Parse(char buffer[], RequestType &type, string &body)
 	stringstream streamBuffer(buffer);
 	string tmpTypeStr;
 	string tmpBodyStr;
-	streamBuffer >> tmpTypeStr;
-	streamBuffer >> tmpBodyStr;
+	streamBuffer >> tmpTypeStr >> tmpBodyStr;
 	auto typeInMap = REQUEST_TYPES.find(to_lower(tmpTypeStr));
 
 	if (typeInMap == REQUEST_TYPES.end())

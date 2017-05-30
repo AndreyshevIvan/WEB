@@ -20,11 +20,12 @@ namespace utils
 	{
 		std::stringstream jStream;
 		jStream << '[';
-		
+
 		for (auto it : directory)
 		{
-			jStream << "{\"name\":\"" << it.path().generic_string()
-				<< "\", \"isDir\":\"" << is_directory(it.path()) << "\"}, ";
+			std::string slash = (is_directory(it)) ? "/" : "";
+			jStream << "{\"name\":\"" << it.path().generic_string() << slash;
+			jStream << "\"}, ";
 		}
 
 		std::string jString = jStream.str();

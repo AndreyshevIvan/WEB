@@ -2,14 +2,22 @@
 <head>
     <meta charset="windows-1251" />
     <title>ProjectTitle</title>
-    <link rel="stylesheet" href="styles.min.[4ef421fb].css" />
-    <script type="text/javascript" src="system.[da5b362a].js"></script>
+    <link rel="stylesheet" href="styles.min.[8165298c].css" />
+    <script type="text/javascript" src="system.[806cc6ee].js"></script>
 </head>
 <body>
-    <div id="application_box" class="application_box">
-        
-    </div>
-    <script type="text/javascript" src="scripts.min.[472e9b73].js"></script>
+    <form id="application_box" class="application_box" onsubmit="return false;">
+        <div id="catalog_display" class="catalog_display" ></div>
+        <div class="controller_inner">
+            <input type="text" id="request_input" wrap="off" class="request_input"
+            /><input type="submit" value="GET" id="get_button" class="get_button"
+            /><input type="submit" value="DELETE" id="delete_button" class="delete_button" />
+            <div class="clear"></div>
+        </div>
+        <div id="console" class="console"></div>
+        <div class="clear"></div>
+    </form>
+    <script type="text/javascript" src="scripts.min.[c66143e5].js"></script>
     <script>System.import('main');</script>
     <script src="//localhost:35729/livereload.js"></script>
 </body>
