@@ -16,6 +16,7 @@ enum FType
 	HTML,
 	JS,
 	JPEG,
+	CSS,
 };
 
 enum RCode

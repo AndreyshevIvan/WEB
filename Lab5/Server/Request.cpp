@@ -8,7 +8,9 @@ using namespace std::experimental::filesystem;
 
 namespace
 {
-	const path ROOT = "files";
+	const path FILES_DIR = "files";
+	const path CLIENT_DIR = "build";
+	const char DIR_SLASH = '/';
 
 	const map<string, RequestType> REQUEST_TYPES = {
 		{ "get", RequestType::_GET },
@@ -24,14 +26,16 @@ namespace
 		{ HTML, "text/html; charset=utf-8" },
 		{ JS, "text/javascript; charset=utf-8" },
 		{ JPEG, "image/jpeg" },
-		{ TEXT, "text/plain; charset=utf-8" }
+		{ TEXT, "text/plain; charset=utf-8" },
+		{ CSS, "text/css; charset=utf-8" }
 	};
 
 	const map<string, FType> TYPE_EXTENSION = {
 		{ ".html", HTML },
 		{ ".js", JS },
 		{ ".jpeg", JPEG },
-		{ ".txt", TEXT }
+		{ ".txt", TEXT },
+		{ ".css", CSS }
 	};
 }
 
@@ -73,13 +77,17 @@ int CRequest::Parse(char buffer[], RequestType &type, string &body)
 	{
 		return INVALID_REQUEST_TYPE;
 	}
-	else if (!IsBodyValid(tmpBodyStr))
+	if (!IsBodyValid(tmpBodyStr))
 	{
 		return INVALID_REQUEST_BODY;
 	}
 
+	auto clientDirStr = DIR_SLASH + CLIENT_DIR.string();
+	auto directory = tmpBodyStr.substr(0, clientDirStr.size());
+	auto isBuildDir = directory == clientDirStr;
+
+	body = (isBuildDir) ? tmpBodyStr : FILES_DIR.string() + tmpBodyStr;
 	type = typeInMap->second;
-	body = ROOT.string() + tmpBodyStr;
 
 	return SUCCESS;
 }
@@ -92,17 +100,10 @@ bool CRequest::IsBodyValid(const std::string &body)
 
 void CRequest::DoGet(const std::string &url, std::stringstream &response)
 {
-	const string index = ROOT.string() + "/" + "index.html";
-
-	if (url == ROOT.string() + "/")
+	if (url == FILES_DIR.string() + "/")
 	{
-		auto rootJson = to_json(recursive_directory_iterator(ROOT));
+		auto rootJson = to_json(recursive_directory_iterator(FILES_DIR));
 		response << Response(OK, HTML, rootJson);
-		return;
-	}
-	if (url == index)
-	{
-		response << GetResponseWithFile("index.html");
 		return;
 	}
 
@@ -129,6 +130,11 @@ void CRequest::DoDelete(const std::string &url, std::stringstream &response)
 
 std::string CRequest::GetResponseWithFile(std::string filePath)
 {
+	if (filePath[0] == DIR_SLASH)
+	{
+		filePath.erase(0, 1);
+	}
+
 	ifstream file(filePath, ios::binary);
 	auto extension = get_extension(filePath);
 	auto isTypeValid = TYPE_EXTENSION.find(extension) != TYPE_EXTENSION.end();
@@ -137,7 +143,6 @@ std::string CRequest::GetResponseWithFile(std::string filePath)
 		return Response(NOT_FOUND, TEXT, CODES.at(NOT_FOUND));
 	}
 
-	auto type = TYPE_EXTENSION.at(extension);
 	string fileStr;
 	string tmp;
 
@@ -148,7 +153,7 @@ std::string CRequest::GetResponseWithFile(std::string filePath)
 	}
 	file.close();
 
-	return Response(OK, type, fileStr);
+	return Response(OK, TYPE_EXTENSION.at(extension), fileStr);
 }
 
 std::string CRequest::Response(RCode code, FType type, const std::string &body)

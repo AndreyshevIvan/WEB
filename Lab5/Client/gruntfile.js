@@ -15,22 +15,27 @@ module.exports = function(grunt)
                         }
                     ]
             },
-            react: {
+            index: {
                 files:
                     [
                         {
                             expand: true,
-                            cwd: 'node_modules/react/dist/',
-                            src: 'react.js',
-                            dest: 'build/'
-                        },
-                        {
-                            expand: true,
-                            cwd: 'node_modules/react-dom/dist/',
-                            src: 'react-dom.js',
+                            cwd: '',
+                            src: 'index.html',
                             dest: 'build/'
                         }
-                    ],
+                    ]
+            },
+            server: {
+                files:
+                    [
+                        {
+                            expand: true,
+                            cwd: '../Server/Debug/',
+                            src: 'Server.exe',
+                            dest: ''
+                        }
+                    ]
             }
         },
 
@@ -57,32 +62,12 @@ module.exports = function(grunt)
             validate: ['ts/*.ts']
         },
 
-        react: {
-            single_file_output:
-            {
-                files:
-                    {
-                        'build/index.js': 'jsx/index.jsx'
-                    }
-            }
-        },
-
         clean: {
+            server: ['Server.exe'],
             scripts: ['build/scripts.js'],
             js_min: ['build/*.js'],
-            css_min: ['build/*.css']
-        },
-
-        connect: {
-            server: {
-                options: {
-                    port: 8080,
-                    base: '',
-                    open: {
-                        appName: 'Chrome'
-                    }
-                }
-            }
+            css_min: ['build/*.css'],
+            index: ['build/index.html']
         },
 
         uglify: {
@@ -118,13 +103,10 @@ module.exports = function(grunt)
                 src: [
                     'build/scripts.min.js',
                     'build/styles.min.css',
-                    'build/react-dom.js',
-                    'build/react.js',
-                    'build/index.js',
                     'build/system.js'
                 ],
 
-                dest: ['index.html']
+                dest: ['build/index.html']
             }
         },
 
@@ -137,13 +119,11 @@ module.exports = function(grunt)
             },
 
             scripts: {
-                files: ['ts/**/*.*', 'jsx/**/*.*'],
+                files: ['ts/**/*.*'],
                 tasks: ['clean:js_min',
                         'shell',
                         'tslint',
                         'ts',
-                        'react',
-                        'copy:react',
                         'uglify',
                         'clean:scripts',
                         'copy:systemjs',
@@ -154,13 +134,17 @@ module.exports = function(grunt)
 
             html: {
                 files: ['*.html'],
+                tasks: ['clean:html', 'copy:index'],
                 options: {livereload: true}
             }
         },
 
         open: {
-            dev: {
-                path: 'http://localhost:80/index.html'
+            server: {
+                path: 'Server.exe'
+            },
+            browser: {
+                path: 'http://127.0.0.1:80/build/index.html'
             }
         },
 
@@ -176,30 +160,28 @@ module.exports = function(grunt)
 
     grunt.loadNpmTasks('grunt-ts'),
     grunt.loadNpmTasks('grunt-tslint');
-    grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-hashres');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-shell');
-
     grunt.registerTask('default', [
             'clean',
             'shell',
             'tslint',
             'ts',
-            'react',
-            'copy:react',
             'uglify',
             'cssmin',
             'clean:scripts',
             'copy:systemjs',
+            'copy:index',
             'hashres:prod',
-            'open',
+            'copy:server',
+            'open:server',
+            'open:browser',
             'watch'
     ]);
 };

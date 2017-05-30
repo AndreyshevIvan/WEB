@@ -2,7 +2,6 @@ export class Client {
     private inputField: HTMLElement = document.getElementById("request_input");
     private console: HTMLElement = document.getElementById("console");
     private display: HTMLElement = document.getElementById("catalog_display");
-    private host: string = "http://127.0.0.1:80";
 
     constructor() {
         this.initListeners();
@@ -19,7 +18,7 @@ export class Client {
         request.onreadystatechange = (): void => {
             this.console.innerHTML = "STATUS = " + request.status.toString();
         };
-        request.open("DEL", this.host + "/" + fileUrl);
+        request.open("DEL", fileUrl);
         request.send();
     }
 
@@ -29,7 +28,7 @@ export class Client {
         request.onreadystatechange = (): void => {
             this.console.innerHTML = "STATUS = " + request.status.toString();
         };
-        request.open("DELETE", this.host + "/" + requestBody);
+        request.open("DELETE", requestBody);
         request.send();
     }
 
@@ -38,7 +37,7 @@ export class Client {
         request.onreadystatechange = (): void => {
             this.console.innerHTML += "rS = " + request.readyState + " s = " + request.status.toString() + " | ";
         };
-        request.open("GET", this.host);
+        request.open("GET", "");
         request.send();
     }
 
