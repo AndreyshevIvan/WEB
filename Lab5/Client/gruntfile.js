@@ -150,7 +150,7 @@ module.exports = function(grunt)
                 path: 'Server.exe'
             },
             browser: {
-                path: 'http://localhost/build/index.html'
+                path: 'http://127.0.0.1:80/build/index.html'
             }
         },
 

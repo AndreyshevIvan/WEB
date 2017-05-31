@@ -141,16 +141,20 @@ void CServer::WaitRequest(int &clientSocket)
 
 void CServer::WorkWithRequest(char buffer[], int clientSocket)
 {
-	stringstream response;
-	CRequest::DoRequest(buffer, response);
-	auto responseStr = response.str();
-	auto respLen = responseStr.length();
-	int recvResult = send(clientSocket, response.str().c_str(), respLen, 0);
-
-	if (recvResult == SOCKET_ERROR)
+	try
 	{
-		CConsole::ErrLog("Send failed: ", WSAGetLastError());
+		stringstream response;
+		CRequest::DoRequest(buffer, response);
+		auto responseStr = response.str();
+		auto respLen = responseStr.length();
+		int recvResult = send(clientSocket, response.str().c_str(), respLen, 0);
+
+		if (recvResult == SOCKET_ERROR)
+		{
+			CConsole::ErrLog("Send failed: ", WSAGetLastError());
+		}
 	}
+	catch (CException) {}
 }
 
 void CServer::Cleanup()
